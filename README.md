@@ -7,10 +7,13 @@ circle opens with your finger, expanding to fill the screen → an ephemeral,
 multicoloured swirl with the phrase *building intelligent co-evolution* held in
 it → the view flies into the centre → it resolves into a bare, peachy page.
 
-The upward swipe *scrubs* the expansion: the circle's edge tracks your finger.
-Release past ~half a pull (or flick) and it commits to full screen; release
-short and it snaps back to the button. Trackpad scroll-up, a click, and
-Enter / Space / ↑ are equivalent fallbacks.
+A faint *emerging…* sits under the button; after `AUTO_DELAY` (~2.2s) the
+circle opens on its own and the sequence runs to the end.
+
+You can also do it yourself: an upward swipe *scrubs* the expansion — the
+circle's edge tracks your finger. Release past ~half a pull (or flick) and it
+commits to full screen; release short and it snaps back. Trackpad scroll-up, a
+click, and Enter / Space / ↑ all open it too.
 
 ## Run
 
@@ -38,6 +41,7 @@ or `npx serve .` if you prefer.
 
 - **Swipe feel:** `main.js` — `threshold()` (px of pull = full open), `COMMIT`
   (release fraction that locks in), `FLICK` (flick velocity), `EASE` (snap rate).
+- **Auto-open:** `AUTO_DELAY` in `main.js` (how long *emerging…* holds first).
 - **Timings:** `T` in `main.js` (`hold` / `zoom`, in ms).
 - **Colours of the swirl:** `palette()` in `swirl.js` (iq cosine palette — the four
   `vec3`s are offset / amplitude / frequency / phase).

@@ -21,24 +21,11 @@
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // a quiet, evolving "thinking" word under the orb
-  var WORDS = [
-    "coalescing", "evolving", "unfurling", "becoming",
-    "cohering", "emerging", "germinating", "recombining", "attuning"
-  ];
-  var wi = Math.floor(Math.random() * WORDS.length);
-  pulseWord.textContent = WORDS[wi];
-  if (!reduced) {
-    setInterval(function () {
-      if (phase !== "idle" && phase !== "expand") return;
-      wi = (wi + 1) % WORDS.length;
-      pulseWord.style.opacity = "0";
-      setTimeout(function () {
-        pulseWord.textContent = WORDS[wi];
-        pulseWord.style.opacity = "1";
-      }, 380);
-    }, 3200);
-  }
+  // a quiet "thinking" word under the orb
+  pulseWord.textContent = "emerging";
+
+  // how long the word sits before the circle opens on its own
+  var AUTO_DELAY = reduced ? 700 : 2200;
 
   var T = {
     hold: reduced ? 500 : 1900,
@@ -264,6 +251,11 @@
 
     requestAnimationFrame(frame);
   }
+
+  // after the word has had a moment, the circle opens on its own
+  setTimeout(function () {
+    if (phase === "idle") openViaKey();
+  }, AUTO_DELAY);
 
   requestAnimationFrame(frame);
 })();
