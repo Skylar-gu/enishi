@@ -35,7 +35,7 @@ html, body {
   transform: scale(1);
   transform-origin: 50% 50%;
   will-change: opacity, transform, filter;
-  transition: opacity 450ms ease;
+  transition: opacity 1600ms ease;
 }
 #stage[data-phase="expand"] #swirl,
 #stage[data-phase="hold"]   #swirl,
@@ -60,12 +60,29 @@ html, body {
   opacity: 0;
   pointer-events: none;
   will-change: opacity, transform;
-  transition: opacity 1400ms ease, transform 1400ms ease;
+  transition: opacity 2600ms ease, transform 2600ms ease;
 }
 #stage[data-phase="hold"] #phrase {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
+
+#phrase .sub {
+  display: block;
+  margin-top: 1.1em;
+  font-size: clamp(0.68rem, 1.4vw, 0.92rem);
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: #ffffff;
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+}
+#phrase .sub .dots { letter-spacing: 0.14em; padding-left: 0.16em; }
+#phrase .sub .dots i {
+  font-style: normal;
+  animation: pulsedot 1.6s ease-in-out infinite;
+}
+#phrase .sub .dots i:nth-child(2) { animation-delay: 0.18s; }
+#phrase .sub .dots i:nth-child(3) { animation-delay: 0.36s; }
 
 /* ---- the button ---- */
 #orb {
@@ -84,7 +101,7 @@ html, body {
   cursor: pointer;
   outline: none;
   -webkit-tap-highlight-color: transparent;
-  transition: opacity 600ms ease, transform 600ms ease, filter 600ms ease;
+  transition: opacity 1600ms ease, transform 1600ms ease, filter 1600ms ease;
 }
 .orb-core {
   position: absolute;
@@ -139,7 +156,7 @@ html, body {
   text-transform: lowercase;
   white-space: nowrap;
   pointer-events: none;
-  transition: opacity 500ms ease;
+  transition: opacity 1000ms ease;
 }
 #pulse .word { transition: opacity 380ms ease; }
 #pulse .dots { letter-spacing: 0.12em; padding-left: 0.12em; }
@@ -167,7 +184,7 @@ html, body {
   opacity: 0;
   pointer-events: none;
   will-change: opacity;
-  transition: opacity 1200ms ease;
+  transition: opacity 2600ms ease;
 }
 #stage[data-phase="zoom"] #site { opacity: 1; }
 #stage[data-phase="site"] #site { opacity: 1; pointer-events: auto; }
@@ -182,14 +199,14 @@ html, body {
   text-transform: lowercase;
   color: var(--ink);
   opacity: 0;
-  transition: opacity 1400ms ease 600ms;
+  transition: opacity 2400ms ease 900ms;
 }
 #stage[data-phase="site"] .wordmark { opacity: 0.5; }
 
 /* ---- reduced motion ---- */
 @media (prefers-reduced-motion: reduce) {
   .orb-core, .orb-ring { animation: none; }
-  #pulse .dots i { animation: none; opacity: 0.55; }
-  #swirl { transition: opacity 400ms ease; }
+  #pulse .dots i, #phrase .sub .dots i { animation: none; opacity: 0.55; }
+  #swirl { transition: opacity 700ms ease; }
   #phrase, #site, .wordmark { transition-duration: 500ms; }
 }

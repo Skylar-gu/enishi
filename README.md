@@ -3,9 +3,12 @@
 A personal site. The arrival is the point of it, for now.
 
 **Sequence:** black screen with a single luminous button → **swipe up** and the
-circle opens with your finger, expanding to fill the screen → an ephemeral,
-multicoloured swirl with the phrase *building intelligent co-evolution* held in
-it → the view flies into the centre → it resolves into a bare, peachy page.
+circle opens with your finger, expanding to fill the screen → it **rests** on an
+ephemeral, multicoloured swirl holding the phrase *building intelligent
+co-evolution* with *demo incubating…* small beneath it.
+
+The zoom-into-centre → bare peachy page is built but gated off
+(`CONTINUE_PAST_HOLD` in `main.js`); flip it on to run the full arrival.
 
 A faint *emerging…* sits under the button; after `AUTO_DELAY` (~2.2s) the
 circle opens on its own and the sequence runs to the end.
@@ -42,7 +45,10 @@ or `npx serve .` if you prefer.
 - **Swipe feel:** `main.js` — `threshold()` (px of pull = full open), `COMMIT`
   (release fraction that locks in), `FLICK` (flick velocity), `EASE` (snap rate).
 - **Auto-open:** `AUTO_DELAY` in `main.js` (how long *emerging…* holds first).
-- **Timings:** `T` in `main.js` (`hold` / `zoom`, in ms).
+- **Pace:** `EASE` in `main.js` (lower = the circle opens more slowly) and the
+  `transition:` durations in `styles.css` (`#swirl`, `#phrase`, `#orb`, `#pulse`).
+- **Timings:** `T` in `main.js` (`hold` / `zoom`, in ms — only used if
+  `CONTINUE_PAST_HOLD`).
 - **Colours of the swirl:** `palette()` in `swirl.js` (iq cosine palette — the four
   `vec3`s are offset / amplitude / frequency / phase).
 - **Page colour:** `--peach` / `--peach-deep` in `styles.css`, and the matching

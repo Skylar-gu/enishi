@@ -1,12 +1,14 @@
 /* enishi — sequence orchestration
  *
- *   idle ──swipe up──▶ expand ──commit──▶ hold ──▶ zoom ──▶ site
- *              └── release short ──▶ snaps back to idle
+ *   idle ──(auto after AUTO_DELAY, or swipe)──▶ expand ──▶ hold  [rests here]
+ *              └── release a short swipe ──▶ snaps back to idle
  *
- * The upward swipe scrubs the circle open: its radius follows your finger.
- * Release past the threshold (or flick) and it commits to full screen;
- * release short and it snaps back. Trackpad scroll-up, click and
- * Enter/Space are equivalent fallbacks.
+ * "emerging…" sits under the orb for a moment, then the circle opens on its
+ * own and rests on the swirl with the phrase held in it. A swipe scrubs the
+ * expansion by hand; trackpad scroll-up / click / Enter open it too.
+ *
+ * The zoom → site phases are kept below but gated off (CONTINUE_PAST_HOLD)
+ * so the experience currently ends on the swirl.
  */
 (function () {
   "use strict";
@@ -25,13 +27,16 @@
   pulseWord.textContent = "emerging";
 
   // how long the word sits before the circle opens on its own
-  var AUTO_DELAY = reduced ? 700 : 2200;
+  var AUTO_DELAY = reduced ? 900 : 2800;
+
+  // the experience rests on the swirl; flip this on to run zoom -> site
+  var CONTINUE_PAST_HOLD = false;
 
   var T = {
-    hold: reduced ? 500 : 1900,
-    zoom: reduced ? 700 : 2800
+    hold: reduced ? 900 : 2600,
+    zoom: reduced ? 900 : 4200
   };
-  var EASE = reduced ? 0.5 : 0.16; // settle rate toward the expand target
+  var EASE = reduced ? 0.5 : 0.045; // settle rate toward the expand target (lower = slower)
   var COMMIT = 0.5; // fraction of the pull that locks in a commit on release
   var FLICK = 0.55; // upward px/ms that commits regardless of distance
 
@@ -214,7 +219,7 @@
         "translate(-50%, -50%) scale(" + (1 + expandP * 1.7).toFixed(3) + ")";
       pulse.style.opacity = String(1 - clamp01(expandP * 5));
 
-      var pv = clamp01((expandP - 0.6) / 0.4);
+      var pv = clamp01((expandP - 0.45) / 0.5);
       phrase.style.opacity = String(pv);
       phrase.style.transform =
         "translate(-50%, -50%) scale(" + (0.96 + 0.04 * pv).toFixed(3) + ")";
@@ -222,7 +227,7 @@
       state.reveal = 1;
       phrase.style.opacity = "1";
       phrase.style.transform = "translate(-50%, -50%) scale(1)";
-      if (pendingNudge || (now - phaseStart) / T.hold >= 1) {
+      if (CONTINUE_PAST_HOLD && (pendingNudge || (now - phaseStart) / T.hold >= 1)) {
         pendingNudge = false;
         setPhase("zoom");
       }
