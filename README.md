@@ -2,10 +2,15 @@
 
 A personal site. The arrival is the point of it, for now.
 
-**Sequence:** black screen with a single luminous button → click → an ephemeral,
-multicoloured swirl blooms out from the centre with the phrase *building
-intelligent co-evolution* held in it → the view flies into the centre → it
-resolves into a bare, peachy page.
+**Sequence:** black screen with a single luminous button → **swipe up** and the
+circle opens with your finger, expanding to fill the screen → an ephemeral,
+multicoloured swirl with the phrase *building intelligent co-evolution* held in
+it → the view flies into the centre → it resolves into a bare, peachy page.
+
+The upward swipe *scrubs* the expansion: the circle's edge tracks your finger.
+Release past ~half a pull (or flick) and it commits to full screen; release
+short and it snaps back to the button. Trackpad scroll-up, a click, and
+Enter / Space / ↑ are equivalent fallbacks.
 
 ## Run
 
@@ -27,11 +32,13 @@ or `npx serve .` if you prefer.
 | `index.html` | the three stacked layers: swirl canvas, phrase, button, site shell |
 | `styles.css` | phase-driven transitions (`#stage[data-phase=...]`), the button, the peachy shell |
 | `swirl.js`   | the swirl — one WebGL fragment shader, domain-warped fbm noise, no libraries |
-| `main.js`    | the timeline: `idle → bloom → hold → zoom → site` |
+| `main.js`    | the gesture + timeline: `idle → expand → hold → zoom → site` |
 
 ## Tuning
 
-- **Timings:** `T` in `main.js` (`bloom` / `hold` / `zoom`, in ms).
+- **Swipe feel:** `main.js` — `threshold()` (px of pull = full open), `COMMIT`
+  (release fraction that locks in), `FLICK` (flick velocity), `EASE` (snap rate).
+- **Timings:** `T` in `main.js` (`hold` / `zoom`, in ms).
 - **Colours of the swirl:** `palette()` in `swirl.js` (iq cosine palette — the four
   `vec3`s are offset / amplitude / frequency / phase).
 - **Page colour:** `--peach` / `--peach-deep` in `styles.css`, and the matching

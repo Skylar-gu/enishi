@@ -13,6 +13,7 @@ html, body {
   height: 100%;
   background: var(--void);
   overflow: hidden;
+  overscroll-behavior: none;
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
@@ -20,6 +21,7 @@ html, body {
   position: fixed;
   inset: 0;
   overflow: hidden;
+  touch-action: none;
 }
 
 /* ---- swirl canvas ---- */
@@ -33,11 +35,11 @@ html, body {
   transform: scale(1);
   transform-origin: 50% 50%;
   will-change: opacity, transform, filter;
-  transition: opacity 900ms ease;
+  transition: opacity 450ms ease;
 }
-#stage[data-phase="bloom"] #swirl,
-#stage[data-phase="hold"]  #swirl,
-#stage[data-phase="zoom"]  #swirl { opacity: 1; }
+#stage[data-phase="expand"] #swirl,
+#stage[data-phase="hold"]   #swirl,
+#stage[data-phase="zoom"]   #swirl { opacity: 1; }
 
 /* ---- the phrase ---- */
 #phrase {
@@ -60,8 +62,7 @@ html, body {
   will-change: opacity, transform;
   transition: opacity 1400ms ease, transform 1400ms ease;
 }
-#stage[data-phase="bloom"] #phrase,
-#stage[data-phase="hold"]  #phrase {
+#stage[data-phase="hold"] #phrase {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
@@ -114,14 +115,37 @@ html, body {
   50%      { transform: scale(1);    opacity: 0.6; }
 }
 
-#stage[data-phase="bloom"] #orb,
-#stage[data-phase="hold"]  #orb,
-#stage[data-phase="zoom"]  #orb,
-#stage[data-phase="site"]  #orb {
+#stage[data-phase="hold"] #orb,
+#stage[data-phase="zoom"] #orb,
+#stage[data-phase="site"] #orb {
   opacity: 0;
   transform: translate(-50%, -50%) scale(2.4);
   filter: blur(6px);
   pointer-events: none;
+}
+
+/* ---- swipe hint ---- */
+#hint {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 104px);
+  transform: translate(-50%, 0);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.68rem;
+  font-weight: 300;
+  letter-spacing: 0.34em;
+  text-transform: lowercase;
+  pointer-events: none;
+  animation: bob 2.6s ease-in-out infinite;
+  transition: opacity 400ms ease;
+}
+#stage[data-phase="hold"] #hint,
+#stage[data-phase="zoom"] #hint,
+#stage[data-phase="site"] #hint { opacity: 0; }
+
+@keyframes bob {
+  0%, 100% { transform: translate(-50%, 4px);  opacity: 0.35; }
+  50%      { transform: translate(-50%, -4px); opacity: 0.7; }
 }
 
 /* ---- the site shell ---- */
@@ -153,7 +177,7 @@ html, body {
 
 /* ---- reduced motion ---- */
 @media (prefers-reduced-motion: reduce) {
-  .orb-core, .orb-ring { animation: none; }
+  .orb-core, .orb-ring, #hint { animation: none; }
   #swirl { transition: opacity 400ms ease; }
   #phrase, #site, .wordmark { transition-duration: 500ms; }
 }
