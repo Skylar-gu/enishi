@@ -7,8 +7,9 @@
     </linearGradient>
   </defs>
 
-  <!-- wings: translucent gradient, glassy white edge, transparent ground -->
-  <g fill="url(#wing)" fill-opacity=".6" stroke="#ffffff" stroke-opacity=".3" stroke-width=".6">
+  <!-- translucent wings, black outline so the shape reads on any tab colour -->
+  <g fill="url(#wing)" fill-opacity=".55" stroke="#111111" stroke-opacity=".9"
+     stroke-width="1.1" stroke-linejoin="round">
     <path d="M16 15 C 12 5, 3 4, 3 11 C 3 16.5, 9 18, 16 16 Z"/>
     <path d="M16 15 C 20 5, 29 4, 29 11 C 29 16.5, 23 18, 16 16 Z"/>
     <path d="M16 16 C 12 20, 6 22, 7 27 C 8 30, 14 28, 16 21 Z"/>
@@ -16,9 +17,9 @@
   </g>
 
   <!-- body + antennae -->
-  <g stroke="#f0e6da" stroke-opacity=".8" stroke-linecap="round" fill="none">
-    <line x1="16" y1="10" x2="16" y2="22" stroke-width="1.4"/>
-    <path d="M16 10 C 15 7, 13 6, 12 6" stroke-width=".8"/>
-    <path d="M16 10 C 17 7, 19 6, 20 6" stroke-width=".8"/>
+  <g stroke="#111111" stroke-opacity=".9" stroke-linecap="round" fill="none">
+    <line x1="16" y1="9.5" x2="16" y2="22.5" stroke-width="1.8"/>
+    <path d="M16 10 C 15 7, 13 6, 12 5.5" stroke-width="1"/>
+    <path d="M16 10 C 17 7, 19 6, 20 5.5" stroke-width="1"/>
   </g>
 </svg>

@@ -15,9 +15,30 @@
   var canvas = document.getElementById("swirl");
   var orb = document.getElementById("orb");
   var phrase = document.getElementById("phrase");
+  var pulse = document.getElementById("pulse");
+  var pulseWord = pulse.querySelector(".word");
   var site = document.getElementById("site");
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // a quiet, evolving "thinking" word under the orb
+  var WORDS = [
+    "coalescing", "evolving", "unfurling", "becoming",
+    "cohering", "emerging", "germinating", "recombining", "attuning"
+  ];
+  var wi = Math.floor(Math.random() * WORDS.length);
+  pulseWord.textContent = WORDS[wi];
+  if (!reduced) {
+    setInterval(function () {
+      if (phase !== "idle" && phase !== "expand") return;
+      wi = (wi + 1) % WORDS.length;
+      pulseWord.style.opacity = "0";
+      setTimeout(function () {
+        pulseWord.textContent = WORDS[wi];
+        pulseWord.style.opacity = "1";
+      }, 380);
+    }, 3200);
+  }
 
   var T = {
     hold: reduced ? 500 : 1900,
@@ -72,6 +93,7 @@
       target = 0;
       dragging = false;
       orb.style.cssText = "";
+      pulse.style.opacity = "";
       phrase.style.opacity = "";
       phrase.style.transform = "";
       canvas.style.transform = "";
@@ -203,6 +225,7 @@
       orb.style.opacity = String(1 - clamp01(expandP / 0.32));
       orb.style.transform =
         "translate(-50%, -50%) scale(" + (1 + expandP * 1.7).toFixed(3) + ")";
+      pulse.style.opacity = String(1 - clamp01(expandP * 5));
 
       var pv = clamp01((expandP - 0.6) / 0.4);
       phrase.style.opacity = String(pv);
