@@ -15,7 +15,6 @@
   var canvas = document.getElementById("swirl");
   var orb = document.getElementById("orb");
   var phrase = document.getElementById("phrase");
-  var hint = document.getElementById("hint");
   var site = document.getElementById("site");
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -73,7 +72,6 @@
       target = 0;
       dragging = false;
       orb.style.cssText = "";
-      hint.style.opacity = "";
       phrase.style.opacity = "";
       phrase.style.transform = "";
       canvas.style.transform = "";
@@ -205,7 +203,6 @@
       orb.style.opacity = String(1 - clamp01(expandP / 0.32));
       orb.style.transform =
         "translate(-50%, -50%) scale(" + (1 + expandP * 1.7).toFixed(3) + ")";
-      hint.style.opacity = String(1 - clamp01(expandP * 5));
 
       var pv = clamp01((expandP - 0.6) / 0.4);
       phrase.style.opacity = String(pv);

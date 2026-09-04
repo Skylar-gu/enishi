@@ -124,30 +124,6 @@ html, body {
   pointer-events: none;
 }
 
-/* ---- swipe hint ---- */
-#hint {
-  position: absolute;
-  left: 50%;
-  top: calc(50% + 104px);
-  transform: translate(-50%, 0);
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.68rem;
-  font-weight: 300;
-  letter-spacing: 0.34em;
-  text-transform: lowercase;
-  pointer-events: none;
-  animation: bob 2.6s ease-in-out infinite;
-  transition: opacity 400ms ease;
-}
-#stage[data-phase="hold"] #hint,
-#stage[data-phase="zoom"] #hint,
-#stage[data-phase="site"] #hint { opacity: 0; }
-
-@keyframes bob {
-  0%, 100% { transform: translate(-50%, 4px);  opacity: 0.35; }
-  50%      { transform: translate(-50%, -4px); opacity: 0.7; }
-}
-
 /* ---- the site shell ---- */
 #site {
   position: absolute;
@@ -177,7 +153,7 @@ html, body {
 
 /* ---- reduced motion ---- */
 @media (prefers-reduced-motion: reduce) {
-  .orb-core, .orb-ring, #hint { animation: none; }
+  .orb-core, .orb-ring { animation: none; }
   #swirl { transition: opacity 400ms ease; }
   #phrase, #site, .wordmark { transition-duration: 500ms; }
 }
