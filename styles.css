@@ -67,23 +67,6 @@ html, body {
   transform: translate(-50%, -50%) scale(1);
 }
 
-#phrase .sub {
-  display: block;
-  margin-top: 1.1em;
-  font-size: clamp(0.68rem, 1.4vw, 0.92rem);
-  font-weight: 300;
-  letter-spacing: 0.2em;
-  color: #ffffff;
-  text-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
-}
-#phrase .sub .dots { letter-spacing: 0.14em; padding-left: 0.16em; }
-#phrase .sub .dots i {
-  font-style: normal;
-  animation: pulsedot 1.6s ease-in-out infinite;
-}
-#phrase .sub .dots i:nth-child(2) { animation-delay: 0.18s; }
-#phrase .sub .dots i:nth-child(3) { animation-delay: 0.36s; }
-
 /* ---- the button ---- */
 #orb {
   position: absolute;
@@ -206,7 +189,7 @@ html, body {
 /* ---- reduced motion ---- */
 @media (prefers-reduced-motion: reduce) {
   .orb-core, .orb-ring { animation: none; }
-  #pulse .dots i, #phrase .sub .dots i { animation: none; opacity: 0.55; }
+  #pulse .dots i { animation: none; opacity: 0.55; }
   #swirl { transition: opacity 700ms ease; }
   #phrase, #site, .wordmark { transition-duration: 500ms; }
 }
