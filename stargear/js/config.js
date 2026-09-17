@@ -28,7 +28,7 @@ window.SITE = {
     ],
     equipment: [                          // ✎
       ["WEAPON",    "silver pen, red ink"],
-      ["ARMOR",     "black blazer"],
+      ["ARMOR",     "light blue silk blouse"],
       ["ACCESSORY", "gold hoops + red lip"],
       ["ITEM",      "embellished suede bag"],
     ],

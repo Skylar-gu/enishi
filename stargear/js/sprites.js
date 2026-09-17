@@ -56,19 +56,20 @@ SG.SPRITES = {
     "..khhhksssss",
     "..khhhhkssss",
     "..khhhhhkkkk",
-    "...khhhkkkss",
-    "....kkkkkkks",
-    "....kkkkkkkk",
-    "...kkkkkkkkk",
-    "...kkkkkkkkk",
+    "...khhhkccss",
+    "....kccccccs",
+    "....kccccccc",
+    "...kcccccccc",
+    "...kcccccccc",
   ],
 };
 SG.SPRITES.unicornBlink = SG.SPRITES.unicorn.map((r, i) => i === 9 ? "..kwwwkwwwkwwwk." : r);
 
-// face: tiny nose (1 skin-shadow pixel between the cheeks) + simple 2-pixel mouth
+// face: tiny nose + asymmetric smirk (right corner curls up)
 SG.FACE = [
-  [11, 15, "S"],                  // subtle nose
-  [11, 16, "k"], [12, 16, "k"],   // simple 2-pixel mouth
+  [11, 15, "S"],                                                  // subtle nose
+  [10, 16, "k"], [11, 16, "k"], [12, 16, "k"], [13, 16, "k"],     // mouth line, 4 wide
+  [13, 15, "k"],                                                  // right corner curls up (smirk)
 ];
 
 SG.drawPortrait = c => SG.drawSprite(c, SG.SPRITES.girlHalf, { mirror: true, overlay: SG.FACE });
