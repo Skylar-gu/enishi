@@ -56,11 +56,11 @@ SG.SPRITES = {
     "..khhhksssss",
     "..khhhhkssss",
     "..khhhhhkkkk",
-    "...khhhkccss",
-    "....kccccccs",
-    "....kccccccc",
-    "...kcccccccc",
-    "...kcccccccc",
+    "...khhhkkkss",
+    "....kkkkkkks",
+    "....kkkkkkkk",
+    "...kkkkkkkkk",
+    "...kkkkkkkkk",
   ],
 };
 SG.SPRITES.unicornBlink = SG.SPRITES.unicorn.map((r, i) => i === 7 ? "kwwwkwwwwwwkwwwk" : r);
