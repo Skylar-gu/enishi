@@ -22,15 +22,15 @@ window.SITE = {
     ],
     stats: [                              // ✎ value out of 100
       { label: "CURIOSITY", value: 96 },
-      { label: "SPARKLE",   value: 88 },
-      { label: "CODE",      value: 74 },
+      { label: "MAGIC",     value: 88 },
+      { label: "FLOW",      value: 74 },
       { label: "SLEEP",     value: 23 },
     ],
     equipment: [                          // ✎
-      ["WEAPON",    "mechanical pencil"],
-      ["ARMOR",     "oversized cardigan"],
-      ["ACCESSORY", "strawberry phone strap"],
-      ["ITEM",      "iced matcha latte ×3"],
+      ["WEAPON",    "silver pen, red ink"],
+      ["ARMOR",     "tailored silk blazer"],
+      ["ACCESSORY", "gold hoops + red lip"],
+      ["ITEM",      "espresso martini, no negotiations"],
     ],
   },
 
@@ -53,14 +53,14 @@ window.SITE = {
   // folder in /worlds/<id>/ (copy /worlds/_template/) and set `page`.
   researchWorlds: [
     {
-      id: "stargear", name: "SKYLAR★GU", jp: "この世界", color: "#ff8fc7", ring: true,
+      id: "enishi", name: "ENISHI ✦ 縁", jp: "えにし", color: "#ff8fc7", ring: true,
       status: "active",                   // "active" | "cleared" | "locked"
-      summary: "this website! an antikythera mechanism with a flip phone inside.",
+      summary: "building intuitive human-AI collaboration.",
       sections: [                          // ✎ [heading, body text]
-        ["THE QUESTION", "can a personal website feel like a place instead of a page?"],
-        ["FIELD NOTES", "gears are drawn in svg, sprites are strings of letters, the music is square waves."],
+        ["THE QUESTION", "what would it feel like to work with AI as a good collaborator — not a prompt into the void?"],
+        ["FIELD NOTES", "arrival experiences, feedback loops, and the small rituals of trust between human and machine."],
       ],
-      tags: ["html", "css", "js"], links: [["source", "https://github.com/skylargu"]], page: "",
+      tags: ["hci", "ai", "design"], links: [["source", "https://github.com/Skylar-gu/enishi"]], page: "",
     },
     {
       id: "causal-interp-climate", name: "CLIMATE ✧ CAUSAL", jp: "気候の因果", color: "#9ff5d8",
@@ -93,20 +93,14 @@ window.SITE = {
       tags: ["llm", "interp", "agents"], links: [], page: "",
     },
     {
-      id: "nacc", name: "NACC ✦ MEMORY", jp: "記憶の地図", color: "#ffb0d8",
+      id: "nacc", name: "NACC ♪ MUSIC×PAIN", jp: "音と痛み", color: "#ffb0d8",
       status: "active",
-      summary: "listening to a decades-long dataset for the quiet patterns of cognitive change.",
+      summary: "how does music move through the brain — and where does it become pain, pleasure, or memory?",
       sections: [
-        ["THE QUESTION", "what does alzheimer's data whisper before the diagnosis is loud?"],
-        ["FIELD NOTES", "longitudinal cohort work with the nacc dataset. survival, trajectories, biomarkers."],
+        ["THE QUESTION", "when we listen to music, what does the brain actually do with it — and can we predict it, voxel by voxel?"],
+        ["FIELD NOTES", "fitting DNN audio embeddings (CLaMP3, CLAP-MusicGen, Qwen3-Omni, MuQ) to per-voxel fMRI BOLD responses on 30s music clips."],
       ],
-      tags: ["health", "stats", "python"], links: [], page: "",
-    },
-    {
-      id: "uncharted", name: "???", jp: "未知", color: "#6b5a8a",
-      status: "locked",
-      summary: "an uncharted world. coming soon.",
-      sections: [], tags: [], links: [], page: "",
+      tags: ["neuro", "audio", "fmri"], links: [], page: "",
     },
   ],
 

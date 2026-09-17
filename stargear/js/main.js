@@ -104,20 +104,6 @@
     SG.say(lines[talk++ % lines.length]);
   });
 
-  /* ---------- welcome cycler (multilingual) ---------- */
-  const WELCOMES = ["welcome", "ようこそ", "欢迎", "환영해요", "bienvenue", "willkommen", "benvenuto", "velkommen", "स्वागत", "خوش آمدید"];
-  const welcomeEl = $("#welcomeCycle");
-  const welcomeWrap = welcomeEl && welcomeEl.parentElement;
-  let welcomeIdx = 0;
-  if (welcomeEl) setInterval(() => {
-    welcomeWrap.classList.add("hiding");
-    setTimeout(() => {
-      welcomeIdx = (welcomeIdx + 1) % WELCOMES.length;
-      welcomeEl.textContent = WELCOMES[welcomeIdx];
-      welcomeWrap.classList.remove("hiding");
-    }, 400);
-  }, 2400);
-
   /* ---------- title → hub ---------- */
   let started = false;
   function start() {

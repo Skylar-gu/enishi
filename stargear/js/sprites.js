@@ -17,10 +17,10 @@ SG.drawSprite = function (canvas, rows, { mirror = false, overlay = [] } = {}) {
 
 SG.SPRITES = {
   unicorn: [
-    ".......y........",
-    ".......y........",
-    ".......y........",
-    "......ywy.......",
+    ".......k........",
+    "......kyk.......",
+    "......kBk.......",
+    ".....kyByk......",
     "....kwwwwwwk....",
     ".pkwwppwwppwwkp.",
     "kwwppwwwwwwppwwk",
