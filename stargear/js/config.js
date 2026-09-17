@@ -16,8 +16,8 @@ window.SITE = {
     class: "Clockwork Dreamer",           // ✎ your RPG "class"
     level: 99,                            // ✎
     bio: [                                // ✎ each string = one dialog page
-      "hi!! welcome to my little mechanism. i built this corner of the internet to keep the things i love.",
-      "i like making stuff, taking things apart to see how they tick, and pretty much anything pink and sparkly.",
+      "hi! welcome to my corner of the internet. you are exactly where you're meant to be.",
+      "i like building stuff, taking things apart to see how they tick, and making the world a more abundant, glamorous place.",
       "look around ~ there are 7 star shards hidden in this world. can you find all of them?"
     ],
     stats: [                              // ✎ value out of 100
