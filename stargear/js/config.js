@@ -6,7 +6,7 @@
 window.SITE = {
   name: "SKYLAR",                         // ✎ shown on title + status screen
   handle: "skylargu",                     // ✎
-  tagline: "clockwork dreamer ✦ collector of tiny wonders", // ✎
+  tagline: "collector of many wonders", // ✎
   jpTagline: "ようこそ、スカイラーの世界へ",     // "welcome to skylar's world"
   email: "skylarl.gu@gmail.com",          // ✎ used by the phone's Mail app
   location: "somewhere on earth, orbiting",   // ✎
