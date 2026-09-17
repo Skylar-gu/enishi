@@ -117,7 +117,7 @@ window.SG = (function () {
     { id: "venus",   glyph: "♀", name: "VENUS",   hint: "venus listens to wishes on bamboo." },
     { id: "mars",    glyph: "♂", name: "MARS",    hint: "mars wants a snake score of 10 or more." },
     { id: "jupiter", glyph: "♃", name: "JUPITER", hint: "lucky jupiter smiles on 5 different charms." },
-    { id: "saturn",  glyph: "♄", name: "SATURN",  hint: "saturn, keeper of time, wants the gears aligned." },
+    { id: "saturn",  glyph: "♄", name: "SATURN",  hint: "saturn, keeper of time, waits for one long slow breath." },
   ];
   function renderShards() {
     const el = $("#shardDots"); el.innerHTML = "";

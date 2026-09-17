@@ -118,33 +118,77 @@
   }
   document.addEventListener("world:open", e => { if (e.detail.id === "research") { view.hidden = true; map.hidden = false; } });
 
-  /* ---------- SHRINE ---------- */
-  C.faves.forEach(([k, v], i) => $("#faveGrid").append(
-    h("div", { class: "fave", style: `--r:${(i % 2 ? 1 : -1) * (1 + (i % 3))}deg` }, h("p", { class: "eyebrow", text: k }), h("p", { text: v }))));
+  /* ---------- SHRINE: wind chimes + spirit-quadrant quiz ---------- */
+  const NS = "http://www.w3.org/2000/svg";
+  const sn = (t, a, p) => { const el = document.createElementNS(NS, t); for (const k in a) el.setAttribute(k, a[k]); p && p.append(el); return el; };
+  const chimes = $("#chimes");
+  if (chimes) {
+    // pentatonic (F# A B C# E) — soft & unresolved
+    const NOTES = [
+      { midi: 78, x: 60,  len: 130, hue: "#ffcfe6" },
+      { midi: 73, x: 130, len: 150, hue: "#c9a7ff" },
+      { midi: 71, x: 200, len: 170, hue: "#9ff5d8" },
+      { midi: 66, x: 270, len: 155, hue: "#ffe27a" },
+      { midi: 64, x: 340, len: 135, hue: "#ff8fc7" },
+    ];
+    // top bar
+    sn("rect", { x: 40, y: 28, width: 340, height: 6, rx: 3, fill: "#2a1638" }, chimes);
+    sn("circle", { cx: 210, cy: 22, r: 5, fill: "#ffe27a", stroke: "#2a1638", "stroke-width": 1.5 }, chimes);
+    sn("line", { x1: 210, y1: 26, x2: 210, y2: 12, stroke: "#2a1638", "stroke-width": 1.5 }, chimes);
+    const rods = NOTES.map((n, i) => {
+      const g = sn("g", { class: "chime", "data-i": i, style: `transform-origin:${n.x}px 34px` }, chimes);
+      sn("line", { x1: n.x, y1: 34, x2: n.x, y2: 44, stroke: "#2a1638", "stroke-width": 1.2 }, g);
+      sn("rect", { x: n.x - 4, y: 44, width: 8, height: n.len, rx: 4, fill: n.hue, stroke: "#2a1638", "stroke-width": 2 }, g);
+      sn("circle", { cx: n.x, cy: 44 + n.len + 4, r: 3.5, fill: "#2a1638" }, g);
+      g.style.animationDelay = `${-i * 0.9}s`;
+      const strike = () => {
+        SG.tone(SG.note(n.midi), 1.4, { type: "sine", vol: 0.11 });
+        SG.tone(SG.note(n.midi + 12), 1.0, { type: "sine", vol: 0.04, when: 0.005 });
+        g.classList.remove("struck"); void g.getBBox(); g.classList.add("struck");
+      };
+      g.addEventListener("pointerenter", () => { if (Math.random() < 0.35) strike(); });
+      g.addEventListener("click", strike);
+      return { g, strike };
+    });
+    // occasional wind
+    setInterval(() => {
+      if (document.hidden || SG.openId !== "faves") return;
+      if (Math.random() < 0.4) rods[Math.floor(Math.random() * rods.length)].strike();
+    }, 4200);
+  }
 
   const QUIZ = [
-    ["pick a snack for the long voyage:", [["melon pan", "venus"], ["spicy ramen", "mars"], ["star candy", "jupiter"], ["plain tea, thanks", "saturn"]]],
-    ["your flip phone ringtone is:", [["a love song", "venus"], ["a boss battle theme", "mars"], ["random every day", "jupiter"], ["silent. always.", "saturn"]]],
-    ["a free saturday. you:", [["make a gift for a friend", "venus"], ["enter a tournament", "mars"], ["take a train somewhere new", "jupiter"], ["fix an old clock", "saturn"]]],
-    ["choose a charm:", [["🎀 ribbon", "venus"], ["🔥 flame", "mars"], ["🍀 clover", "jupiter"], ["⏳ hourglass", "saturn"]]],
+    ["when you don't know what to do, you first:",
+      [["think it through", "mind"], ["feel it out", "heart"], ["just start moving", "body"], ["wait for a sign", "spirit"]]],
+    ["your favorite kind of quiet is:",
+      [["a good book", "mind"], ["a soft conversation", "heart"], ["a long walk", "body"], ["stargazing", "spirit"]]],
+    ["what draws you closer to the sacred?",
+      [["understanding something deeply", "mind"], ["loving someone well", "heart"], ["moving your body", "body"], ["stillness", "spirit"]]],
+    ["a gift from the universe would be:",
+      [["a book that changes how you see", "mind"], ["a person who really sees you", "heart"], ["a place that feels like home", "body"], ["a dream that means something", "spirit"]]],
+    ["the thing you protect most is:",
+      [["your curiosity", "mind"], ["your softness", "heart"], ["your energy", "body"], ["your inner quiet", "spirit"]]],
   ];
   const RESULT = {
-    venus: ["♀ VENUS", "soft, sparkly and full of love. you probably have the cutest stickers on your phone."],
-    mars: ["♂ MARS", "brave, bold and a little chaotic. you'd absolutely beat me at snake."],
-    jupiter: ["♃ JUPITER", "lucky and endlessly curious. every gacha pull goes your way."],
-    saturn: ["♄ SATURN", "patient keeper of time. you'd be the one to rebuild the antikythera mechanism."],
+    mind:   ["🦉 MIND · 思", "you meet the world with clear seeing. the shrine keeps a lamp for you."],
+    heart:  ["🦌 HEART · 心", "you meet the world with tender attention. the shrine keeps a bowl of water for you."],
+    body:   ["🐯 BODY · 体", "you meet the world through your own two hands. the shrine keeps a warm stone for you."],
+    spirit: ["🦢 SPIRIT · 魂", "you meet the world listening for what's underneath. the shrine keeps a bell for you."],
   };
   function quiz(step = 0, tally = {}) {
-    const q = $("#quiz"); q.innerHTML = "";
+    const q = $("#quiz"); if (!q) return; q.innerHTML = "";
     if (step === QUIZ.length) {
       const best = Object.entries(tally).sort((a, b) => b[1] - a[1])[0][0];
       sfx.fanfare();
-      q.append(h("p", { class: "eyebrow", text: "YOUR PLANET GEAR IS..." }), h("h3", { class: "quiz-result", text: RESULT[best][0] }), h("p", { text: RESULT[best][1] }),
+      q.append(h("p", { class: "eyebrow", text: "YOUR QUADRANT ✦ SPIRIT ANIMAL" }),
+        h("h3", { class: "quiz-result", text: RESULT[best][0] }),
+        h("p", { text: RESULT[best][1] }),
         h("button", { class: "btn ghost small", onclick: () => quiz() }, "↻ AGAIN"));
       return;
     }
     const [question, opts] = QUIZ[step];
-    q.append(h("p", { class: "eyebrow", text: `QUIZ · WHICH PLANET ARE YOU? ${step + 1}/${QUIZ.length}` }), h("p", { text: question }),
+    q.append(h("p", { class: "eyebrow", text: `QUIZ · QUADRANTS OF BEING ${step + 1}/${QUIZ.length}` }),
+      h("p", { text: question }),
       h("div", { class: "quiz-opts" }, opts.map(([label, p]) => h("button", {
         class: "btn ghost small", onclick: () => { sfx.blip(); quiz(step + 1, { ...tally, [p]: (tally[p] || 0) + 1 }); },
       }, label))));

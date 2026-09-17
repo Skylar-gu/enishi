@@ -126,7 +126,7 @@
       if (k === "ok" || k === "sl" || k === "call") {
         const msg = this.ta.value.trim();
         if (!msg) { sfx.bad(); this.ta.focus(); return; }
-        location.href = `mailto:${C.email}?subject=${encodeURIComponent("hello from STAR☆GEAR ✦")}&body=${encodeURIComponent(msg)}`;
+        location.href = `mailto:${C.email}?subject=${encodeURIComponent("hello from SKYLAR★GU ✦")}&body=${encodeURIComponent(msg)}`;
         body.innerHTML = ""; body.append(h("p", { class: "ph-center blink", text: "✉ SENDING..." }), h("p", { class: "ph-center ph-small", text: "your mail app should open ♡" }));
         sfx.ok();
       }

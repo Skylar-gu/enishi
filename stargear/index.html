@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>STAR☆GEAR</title>
+  <title>SKYLAR★GU</title>
   <meta name="description" content="A clockwork personal website: an antikythera mechanism, a flip phone, a gacha machine, and seven hidden star shards.">
   <meta name="author" content="Skylar">
-  <meta property="og:title" content="STAR☆GEAR">
+  <meta property="og:title" content="SKYLAR★GU">
   <meta property="og:description" content="a clockwork little world ✦ press start">
   <meta name="theme-color" content="#1b1033">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌠</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
   <header id="hud">
     <div class="hud-left">
       <span class="signal" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <button class="hud-logo" id="homeBtn" title="back to the mechanism">STAR☆GEAR</button>
+      <button class="hud-logo" id="homeBtn" title="back to the mechanism">SKYLAR★GU</button>
     </div>
     <div class="hud-mid">
       <span class="shards" id="shardDots" title="star shards found"></span>
@@ -41,11 +41,11 @@
   <section id="title" aria-label="title screen">
     <div class="title-gear" id="titleGear" aria-hidden="true"></div>
     <div class="title-inner">
-      <p class="title-kicker">〜 a clockwork world by <span data-site="name"></span> 〜</p>
-      <h1 class="logo"><span>STAR</span><em>☆</em><span>GEAR</span></h1>
+      <p class="title-kicker">〜 <span data-site="name"></span>'S WORLD 〜</p>
+      <h1 class="logo"><span>SKYLAR</span><em>★</em><span>GU</span></h1>
       <p class="jp" data-site="jpTagline"></p>
       <button class="press-start" id="startBtn">▶ PRESS START</button>
-      <p class="title-foot">© 2026 <span data-site="handle"></span> ✦ best viewed on a flip phone ✦ 星の歯車</p>
+      <p class="title-foot">© 2026 <span data-site="handle"></span> ✦ best viewed on a flip phone ✦ スカイラー☆グ</p>
     </div>
   </section>
 
@@ -112,7 +112,7 @@
 
     <!-- NOW -->
     <section class="window" data-world="now" aria-label="now" hidden>
-      <div class="win-bar"><span>✎ DIARY ─ what i'm up to now</span><button class="win-x" aria-label="close">✕</button></div>
+      <div class="win-bar"><span>✎ JOURNAL ─ what i'm up to now</span><button class="win-x" aria-label="close">✕</button></div>
       <div class="win-body">
         <p class="save-head">SAVE FILE 01 · last saved <b id="nowUpdated"></b></p>
         <ul class="now-list" id="nowList"></ul>
@@ -126,7 +126,8 @@
         <div class="starmap" id="starmap">
           <div class="rs-intro">
             <p class="eyebrow">STAR MAP</p>
-            <p>every project is its own little world. pick a planet and land on it ✦</p>
+            <p>explore my past projects — each one a little planet you can land on ✦</p>
+            <p class="rs-scholar"><a href="https://scholar.google.com/citations?user=17SF4-UAAAAJ&amp;hl=en" target="_blank" rel="noopener">✦ papers on google scholar →</a></p>
           </div>
           <div class="orbits" id="orbits"></div>
         </div>
@@ -215,18 +216,26 @@
       </div>
     </section>
 
-    <!-- CALIBRATE PUZZLE -->
-    <section class="window wide" data-world="calibrate" aria-label="gear puzzle" hidden>
-      <div class="win-bar"><span>⚙ CALIBRATE ─ gear puzzle</span><button class="win-x" aria-label="close">✕</button></div>
-      <div class="win-body puzzle-stage">
-        <div class="puzzle-box"><svg id="puzzle" viewBox="-160 -170 320 330" aria-label="three gear rings"></svg></div>
-        <div class="puzzle-side">
-          <p>the mechanism slipped out of alignment! turn the cranks until <b>☉ ☾ ✦</b> line up under the pointer.</p>
-          <p class="muted">but careful — the gears are meshed. each crank turns more than one ring.</p>
-          <div class="cranks" id="cranks"></div>
-          <p class="moves">MOVES <b id="moves">0</b></p>
-          <button class="btn ghost" id="scramble">↻ SCRAMBLE</button>
-          <p class="win-msg" id="puzzleMsg" aria-live="polite"></p>
+    <!-- NAGARE (somatic meditation) -->
+    <section class="window wide" data-world="nagare" aria-label="somatic meditation" hidden>
+      <div class="win-bar"><span>❋ NAGARE ─ dance · art · flow</span><button class="win-x" aria-label="close">✕</button></div>
+      <div class="win-body nagare-stage">
+        <div class="nagare-canvas-wrap">
+          <canvas id="nagareCanvas" aria-label="somatic drawing canvas"></canvas>
+          <div class="breath-ring" id="breathRing" aria-hidden="true"><span></span></div>
+          <p class="nagare-prompt" id="nagarePrompt">breathe in ✦ shoulders soft</p>
+          <p class="breath-cue" id="breathCue" aria-hidden="true">INHALE</p>
+        </div>
+        <div class="nagare-side">
+          <p class="eyebrow">SOMATIC MEDITATION</p>
+          <p>a soft flow. move your hand across the canvas — strokes fade like breath. follow the ring, follow the prompts.</p>
+          <p class="muted small">for you, not the internet. nothing leaves your device unless you press SAVE.</p>
+          <div class="nagare-controls">
+            <button class="btn ghost small" id="nagareClear">✕ CLEAR</button>
+            <button class="btn ghost small" id="nagareSave">↓ SAVE</button>
+          </div>
+          <p class="nagare-timer" id="nagareTimer">✦ session: 0:00</p>
+          <p class="muted small">psst — sit with one long slow breath and the mechanism notices.</p>
         </div>
       </div>
     </section>
@@ -247,15 +256,25 @@
       </div>
     </section>
 
-    <!-- FAVES SHRINE -->
-    <section class="window wide" data-world="faves" aria-label="favorite things" hidden>
-      <div class="win-bar"><span>♡ SHRINE ─ favorite things</span><button class="win-x" aria-label="close">✕</button></div>
+    <!-- SHRINE -->
+    <section class="window wide" data-world="faves" aria-label="shrine" hidden>
+      <div class="win-bar"><span>⛩ SHRINE ─ sacred things</span><button class="win-x" aria-label="close">✕</button></div>
       <div class="win-body faves">
-        <div class="fave-grid" id="faveGrid"></div>
+        <p class="shrine-altar">⛩ approach quietly. leave the day at the gate.</p>
+        <div class="chimes-wrap">
+          <p class="eyebrow chimes-eyebrow">WIND CHIMES ✦ 風鈴</p>
+          <svg id="chimes" viewBox="0 0 420 240" aria-label="interactive wind chimes"></svg>
+          <p class="muted small chimes-help">tap a chime. or wait — the wind moves on its own.</p>
+        </div>
+        <a class="shrine-substack" href="https://skylartypical.substack.com" target="_blank" rel="noopener">
+          <span class="eyebrow">READ ME ✎</span>
+          <span class="ss-title">skylar typical</span>
+          <span class="ss-sub">little essays on substack →</span>
+        </a>
         <div class="quiz panel" id="quiz"></div>
         <div class="buttons88">
           <p class="eyebrow">LINK ME! (88×31)</p>
-          <div class="b88" aria-label="88 by 31 site button"><span class="b88-gear">⚙</span><span class="b88-t">STAR☆GEAR</span></div>
+          <div class="b88" aria-label="88 by 31 site button"><span class="b88-gear">⚙</span><span class="b88-t">SKYLAR★GU</span></div>
           <p class="muted small">copy the button and link back to this site ✦</p>
         </div>
       </div>
@@ -265,8 +284,8 @@
   <!-- ============ MASCOT ============ -->
   <div id="mascot">
     <div class="bubble" id="bubble" aria-live="polite"></div>
-    <button class="mascot-btn" id="mascotBtn" aria-label="talk to hoshi the gear bunny">
-      <canvas class="pixel" id="bunny" width="16" height="16"></canvas>
+    <button class="mascot-btn" id="mascotBtn" aria-label="talk to hoshi the unicorn">
+      <canvas class="pixel" id="mascotSprite" width="16" height="16"></canvas>
     </button>
   </div>
 
@@ -288,7 +307,7 @@
   <script src="js/worlds.js"></script>
   <script src="js/phone.js"></script>
   <script src="js/gacha.js"></script>
-  <script src="js/puzzle.js"></script>
+  <script src="js/nagare.js"></script>
   <script src="js/wishes.js"></script>
   <script src="js/main.js"></script>
 </body>

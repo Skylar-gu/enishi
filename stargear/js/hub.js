@@ -10,14 +10,14 @@
   };
 
   SG.WORLDS = [
-    { id: "about",     glyph: "☾", title: "STATUS",          jp: "ステータス",   planet: "MOON",    desc: "who i am, my stats, and what i've got equipped." },
-    { id: "now",       glyph: "✎", title: "DIARY",           jp: "いまのにっき", planet: "MERCURY", desc: "what i'm making, reading, listening to — right now." },
-    { id: "research",  glyph: "♃", title: "RESEARCH WORLDS", jp: "けんきゅう",   planet: "JUPITER", desc: "my projects, each one a little planet you can land on and explore." },
-    { id: "phone",     glyph: "✆", title: "KEITAI",          jp: "ケータイ",     planet: "VENUS",   desc: "my flip phone. snake, a melody maker, fortunes, and my contacts." },
-    { id: "gacha",     glyph: "✿", title: "GACHAPON",        jp: "ガチャガチャ", planet: "SUN",     desc: "spend stardust on capsule charms. collect all 16!" },
-    { id: "calibrate", glyph: "⚙", title: "CALIBRATE",       jp: "ちょうせい",   planet: "SATURN",  desc: "the gears slipped! a meshed-gear alignment puzzle." },
-    { id: "wishes",    glyph: "☆", title: "WISH TREE",       jp: "たなばた",     planet: "MARS",    desc: "write a wish on a paper strip and tie it to the bamboo." },
-    { id: "faves",     glyph: "♡", title: "SHRINE",          jp: "すきなもの",   planet: "EARTH",   desc: "a shrine to my favorite things + a quiz: which planet are you?" },
+    { id: "about",     glyph: "☾", title: "STATUS",          jp: "ステータス",   planet: "MOON",    desc: "who i am." },
+    { id: "now",       glyph: "✎", title: "JOURNAL",         jp: "にっき",       planet: "MERCURY", desc: "what i'm up to lately." },
+    { id: "research",  glyph: "♃", title: "RESEARCH WORLDS", jp: "けんきゅう",   planet: "JUPITER", desc: "explore my past projects." },
+    { id: "phone",     glyph: "✆", title: "KEITAI",          jp: "ケータイ",     planet: "VENUS",   desc: "my flip phone ✆ contacts & tiny apps." },
+    { id: "gacha",     glyph: "✿", title: "GACHAPON",        jp: "ガチャガチャ", planet: "SUN",     desc: "spin for capsule charms." },
+    { id: "nagare",    glyph: "❋", title: "NAGARE",          jp: "ながれ",       planet: "SATURN",  desc: "dance · art · flow. a soft somatic meditation." },
+    { id: "wishes",    glyph: "☆", title: "WISH TREE",       jp: "たなばた",     planet: "MARS",    desc: "leave a wish on the bamboo." },
+    { id: "faves",     glyph: "⛩", title: "SHRINE",          jp: "せいち",       planet: "EARTH",   desc: "wind chimes, essays, and a spirit quiz." },
   ];
   const N = SG.WORLDS.length, STEP = 360 / N;
 
@@ -70,14 +70,10 @@
   gears.push(SG.makeGear(svg, { r: 272, teeth: 96, fill: "url(#plate)", spokes: 0, ratio: 0.12, hole: 0 }));
   s("circle", { r: 250, fill: "url(#patina)" }, svg);
 
-  // zodiac ring (fixed, like the front dial of the real mechanism)
+  // outer ring (bezel + inner face)
   const zod = s("g", {}, svg);
   s("circle", { r: 246, fill: "#fff0e0", stroke: "#2a1638", "stroke-width": 3 }, zod);
   s("circle", { r: 212, fill: "url(#face)", stroke: "#2a1638", "stroke-width": 3 }, zod);
-  "♈♉♊♋♌♍♎♏♐♑♒♓".split("").forEach((g, i) => {
-    const a = (i * 30 + 15) * Math.PI / 180;
-    s("text", { x: Math.sin(a) * 229, y: -Math.cos(a) * 229, class: "zodiac", "text-anchor": "middle", "dominant-baseline": "central" }, zod).textContent = g;
-  });
   for (let i = 0; i < 72; i++) {
     const a = (i * 5) * Math.PI / 180, big = i % 6 === 0;
     s("line", { x1: Math.sin(a) * 212, y1: -Math.cos(a) * 212, x2: Math.sin(a) * (big ? 200 : 206), y2: -Math.cos(a) * (big ? 200 : 206), stroke: "#ffcfe6", "stroke-width": big ? 2 : 1 }, zod);

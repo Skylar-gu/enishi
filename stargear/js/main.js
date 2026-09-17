@@ -73,21 +73,21 @@
   });
 
   /* ---------- mascot ---------- */
-  const bunny = $("#bunny");
-  SG.drawSprite(bunny, SG.SPRITES.bunny);
-  setInterval(() => { SG.drawSprite(bunny, SG.SPRITES.bunnyBlink); setTimeout(() => SG.drawSprite(bunny, SG.SPRITES.bunny), 140); }, 3800);
+  const mascotSprite = $("#mascotSprite");
+  SG.drawSprite(mascotSprite, SG.SPRITES.unicorn);
+  setInterval(() => { SG.drawSprite(mascotSprite, SG.SPRITES.unicornBlink); setTimeout(() => SG.drawSprite(mascotSprite, SG.SPRITES.unicorn), 140); }, 3800);
 
   const hour = new Date().getHours();
   const greet = hour < 5 ? "up late? the stars are extra sparkly right now" : hour < 12 ? "good morning!" : hour < 18 ? "good afternoon!" : "good evening ✦";
   const TIPS = {
     about: "that's " + C.name + "! click the dialog box to hear more.",
-    now: "this diary gets updated whenever something new happens ♡",
+    now: "this journal gets updated whenever something new happens ♡",
     research: "each planet is a project. land on one to explore it!",
     phone: "tap the phone to flip it open. i love the snake game...",
     gacha: "one stardust per spin. there are 3 super rare charms!",
-    calibrate: "each crank turns more than one ring. think like a gear!",
+    nagare: "move gently. one long slow breath and the mechanism notices.",
     wishes: "tie a wish to the bamboo ✦ you can click the strips to read them.",
-    faves: "take the quiz! i'm definitely a jupiter.",
+    faves: "tap a chime. take the quiz. read a little something.",
   };
   document.addEventListener("world:open", e => { if (e.detail.first) setTimeout(() => SG.say(TIPS[e.detail.id] || ""), 450); });
 
@@ -96,7 +96,7 @@
     sfx.blip();
     const missing = SG.SHARDS.filter(s => !save.shards.includes(s.id));
     const lines = [
-      `i'm hoshi, the gear bunny! ${greet}`,
+      `i'm hoshi, the little unicorn! ${greet}`,
       missing.length ? `hint: ${missing[talk % missing.length].hint}` : "you found every shard!! you're amazing ♡",
       `you have ${save.coins} stardust. the gachapon is calling...`,
       "drag the big dial to spin the mechanism ✦",
