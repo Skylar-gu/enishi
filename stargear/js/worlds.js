@@ -118,7 +118,11 @@
   }
   document.addEventListener("world:open", e => { if (e.detail.id === "research") { view.hidden = true; map.hidden = false; } });
 
-  /* ---------- SHRINE: wind chimes + spirit-quadrant quiz ---------- */
+  /* ---------- SHRINE: sacred things + wind chimes + spirit-quadrant quiz ---------- */
+  const faveGrid = $("#faveGrid");
+  if (faveGrid) C.faves.forEach(([k, v]) => faveGrid.append(
+    h("div", { class: "fave" }, h("p", { class: "eyebrow", text: k }), h("p", { text: v }))));
+
   const NS = "http://www.w3.org/2000/svg";
   const sn = (t, a, p) => { const el = document.createElementNS(NS, t); for (const k in a) el.setAttribute(k, a[k]); p && p.append(el); return el; };
   const chimes = $("#chimes");

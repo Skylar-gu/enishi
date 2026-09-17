@@ -120,13 +120,11 @@ window.SITE = {
 
   // ---- FAVORITES SHRINE ----
   faves: [                                // ✎ [category, thing]
-    ["GAME",    "animal crossing: wild world"],
-    ["COLOR",   "strawberry milk pink"],
-    ["SNACK",   "melon pan"],
-    ["OBJECT",  "the antikythera mechanism, obviously"],
-    ["SOUND",   "a flip phone snapping shut"],
-    ["PLANET",  "venus ♀"],
-    ["ERA",     "2001 keitai culture"],
-    ["WORD",    "kirakira (きらきら)"],
+    ["GAME",  "blood on the clock tower"],
+    ["COLOR", "dawn through a plane window"],
+    ["SNACK", "eel onigiri"],
+    ["DANCE", "ecstatic dance + contact improv"],
+    ["SOUND", "ocean waves"],
+    ["WORD",  "forelsket (feeling of falling in love)"],
   ],
 };

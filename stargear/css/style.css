@@ -543,6 +543,18 @@ textarea#wishText { font: 16px var(--dot); background: var(--cream); color: var(
   75%  { transform: rotate(4deg); }
   100% { transform: rotate(-1.5deg); }
 }
+.sacred-things { grid-column: 1 / -1; }
+.sacred-eyebrow { text-align: center; margin: 0 0 10px; letter-spacing: .1em; }
+.fave-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+.fave {
+  background: rgba(255, 240, 224, .04); color: var(--blush);
+  border: 1px solid rgba(255, 207, 230, .22); border-radius: 2px;
+  padding: 12px 14px; transition: background .25s, transform .25s;
+}
+.fave:hover { background: rgba(255, 240, 224, .1); transform: translateY(-2px); }
+.fave p { margin: 0; }
+.fave .eyebrow { color: var(--gold); font-size: 8px; margin-bottom: 4px; letter-spacing: .18em; }
+
 .shrine-substack {
   display: flex; flex-direction: column; gap: 4px; text-decoration: none;
   background: var(--cream); color: var(--ink); border: 3px solid var(--ink); border-radius: 4px 14px 4px 14px;
