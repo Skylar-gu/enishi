@@ -16,7 +16,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="css/style.css?v=10">
+  <link rel="stylesheet" href="css/style.css?v=11">
 </head>
 <body class="is-title">
   <canvas id="sky" aria-hidden="true"></canvas>
@@ -219,6 +219,22 @@
       </div>
     </section>
 
+    <!-- FURIN (wind chimes) -->
+    <section class="window wide" data-world="furin" aria-label="wind chimes" hidden>
+      <div class="win-bar"><span>♪ FURIN ─ 風鈴</span><button class="win-x" aria-label="close">✕</button></div>
+      <div class="win-body furin-stage">
+        <div class="chimes-wrap">
+          <svg id="chimes" viewBox="0 0 420 260" aria-label="interactive wind chimes"></svg>
+          <p class="muted small chimes-help">slide your mouse across the rods — each chime rings as you pass through it.</p>
+        </div>
+        <div class="furin-side">
+          <p class="eyebrow">KEY ✦ 調</p>
+          <div class="key-picker" id="keyPicker"></div>
+          <p class="muted small furin-hint">pick a mood — the chimes retune to a new scale.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- NAGARE (somatic meditation) -->
     <section class="window wide" data-world="nagare" aria-label="somatic meditation" hidden>
       <div class="win-bar"><span>❋ NAGARE ─ art · flow · somatic meditation</span><button class="win-x" aria-label="close">✕</button></div>
@@ -264,11 +280,6 @@
       <div class="win-bar"><span>⛩ SHRINE ─ sacred things</span><button class="win-x" aria-label="close">✕</button></div>
       <div class="win-body faves">
         <p class="shrine-altar">⛩ approach quietly. leave the day at the gate.</p>
-        <div class="chimes-wrap">
-          <p class="eyebrow chimes-eyebrow">WIND CHIMES ✦ 風鈴</p>
-          <svg id="chimes" viewBox="0 0 420 240" aria-label="interactive wind chimes"></svg>
-          <p class="muted small chimes-help">tap a chime. or wait — the wind moves on its own.</p>
-        </div>
         <div class="sacred-things">
           <p class="eyebrow sacred-eyebrow">SACRED THINGS ✦ 供物</p>
           <div class="fave-grid" id="faveGrid"></div>
@@ -279,11 +290,6 @@
           <span class="ss-sub">little essays on substack →</span>
         </a>
         <div class="quiz panel" id="quiz"></div>
-        <div class="buttons88">
-          <p class="eyebrow">LINK ME! (88×31)</p>
-          <div class="b88" aria-label="88 by 31 site button"><span class="b88-gear">⚙</span><span class="b88-t">SKYLAR★GU</span></div>
-          <p class="muted small">copy the button and link back to this site ✦</p>
-        </div>
       </div>
     </section>
   </div>
@@ -307,15 +313,15 @@
     </div>
   </div>
 
-  <script src="js/config.js?v=10"></script>
-  <script src="js/core.js?v=10"></script>
-  <script src="js/sprites.js?v=10"></script>
-  <script src="js/hub.js?v=10"></script>
-  <script src="js/worlds.js?v=10"></script>
-  <script src="js/phone.js?v=10"></script>
-  <script src="js/gacha.js?v=10"></script>
-  <script src="js/nagare.js?v=10"></script>
-  <script src="js/wishes.js?v=10"></script>
-  <script src="js/main.js?v=10"></script>
+  <script src="js/config.js?v=11"></script>
+  <script src="js/core.js?v=11"></script>
+  <script src="js/sprites.js?v=11"></script>
+  <script src="js/hub.js?v=11"></script>
+  <script src="js/worlds.js?v=11"></script>
+  <script src="js/phone.js?v=11"></script>
+  <script src="js/gacha.js?v=11"></script>
+  <script src="js/nagare.js?v=11"></script>
+  <script src="js/wishes.js?v=11"></script>
+  <script src="js/main.js?v=11"></script>
 </body>
 </html>

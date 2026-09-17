@@ -17,22 +17,22 @@ SG.drawSprite = function (canvas, rows, { mirror = false, overlay = [] } = {}) {
 
 SG.SPRITES = {
   unicorn: [
-    ".......k........",
-    "......kyk.......",
-    "......kBk.......",
-    ".....kyByk......",
-    "....kwwwwwwk....",
-    ".pkwwppwwppwwkp.",
-    "kwwppwwwwwwppwwk",
-    "kwwwewwwwwwewwwk",
-    "kwwwwwwwwwwwwwwk",
-    "kwwrwwwwwwwwrwwk",
-    ".kkwwwwwwwwwwkk.",
-    "..pkwwwwwwwwkp..",
+    "........k.......",
+    ".......kyk......",
+    ".......kBk......",
+    ".......kyk......",
+    "......kyByk.....",
+    ".....kwwwwwk....",
+    "....kwwwwwwwk...",
+    "...kwwwwwwwwwk..",
+    "..kwppwwwwwppwk.",
+    "..kwwwewwwewwwk.",
+    "..kwwwwwwwwwwwk.",
+    "..kwrwwwwwwwrwk.",
+    "..kkkwwwwwwkkk..",
     "..pkkkkkkkkkkp..",
-    "..kwwwwwwwwwwk..",
+    "..pkwwwwwwwwkp..",
     "..kwwk....kwwk..",
-    "..kkk......kkk..",
   ],
   unicornBlink: null, // filled below
   // left half of a 24×24 portrait; mirrored at draw time
@@ -63,7 +63,7 @@ SG.SPRITES = {
     "...kkkkkkkkk",
   ],
 };
-SG.SPRITES.unicornBlink = SG.SPRITES.unicorn.map((r, i) => i === 7 ? "kwwwkwwwwwwkwwwk" : r);
+SG.SPRITES.unicornBlink = SG.SPRITES.unicorn.map((r, i) => i === 9 ? "..kwwwkwwwkwwwk." : r);
 
 // face: tiny nose (1 skin-shadow pixel between the cheeks) + simple 2-pixel mouth
 SG.FACE = [

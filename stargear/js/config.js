@@ -115,10 +115,8 @@ window.SITE = {
   // ---- FAVORITES SHRINE ----
   faves: [                                // ✎ [category, thing]
     ["GAME",  "blood on the clock tower"],
-    ["COLOR", "dawn through a plane window"],
-    ["SNACK", "eel onigiri"],
     ["DANCE", "ecstatic dance + contact improv"],
+    ["COLOR", "dawn through a plane window"],
     ["SOUND", "ocean waves"],
-    ["WORD",  "forelsket (feeling of falling in love)"],
   ],
 };

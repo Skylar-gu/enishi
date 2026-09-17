@@ -476,6 +476,26 @@ dd { margin: 0; }
 .charm.got { border: 2px solid var(--pink); background: rgba(255,143,199,.15); }
 .charm.got:hover { transform: translateY(-3px) rotate(-4deg); background: rgba(255,143,199,.3); }
 
+/* ---------- furin (wind chimes) ---------- */
+.furin-stage { display: flex; gap: 22px; flex-wrap: wrap; align-items: flex-start; }
+.furin-stage .chimes-wrap { flex: 1 1 460px; min-width: 300px; }
+.furin-side { flex: 0 1 200px; min-width: 180px; display: flex; flex-direction: column; gap: 10px; }
+.furin-side p { margin: 0; }
+.furin-hint { margin-top: 6px !important; }
+.key-picker { display: grid; gap: 8px; margin-top: 4px; }
+.key-btn {
+  background: rgba(255,207,230,.06); color: var(--blush);
+  border: 1.5px solid rgba(255,207,230,.25); border-radius: 4px;
+  padding: 10px 12px; text-align: left; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: baseline; gap: 8px;
+  transition: background .2s, transform .15s, border-color .2s;
+  font-family: var(--dot);
+}
+.key-btn:hover { background: rgba(255,207,230,.14); transform: translateX(2px); border-color: var(--pink); }
+.key-btn.on { background: rgba(255,143,199,.22); border-color: var(--pink); color: #fff; }
+.key-btn .key-name { font-family: var(--pixel); font-size: 9px; letter-spacing: .12em; }
+.key-btn .key-jp { font-family: var(--dot); font-size: 14px; opacity: .7; }
+
 /* ---------- nagare (somatic flow meditation) ---------- */
 .nagare-stage { display: flex; gap: 22px; flex-wrap: wrap; align-items: stretch; }
 .nagare-canvas-wrap {

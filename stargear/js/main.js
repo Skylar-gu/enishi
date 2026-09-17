@@ -86,8 +86,9 @@
     phone: "tap the phone to flip it open. i love the snake game...",
     gacha: "one stardust per spin. there are 3 super rare charms!",
     nagare: "move gently. one long slow breath and the mechanism notices.",
+    furin: "slide across the rods to play. tap a KEY on the right to retune.",
     wishes: "tie a wish to the bamboo ✦ you can click the strips to read them.",
-    faves: "tap a chime. take the quiz. read a little something.",
+    faves: "take the quiz. read a little something. leave an offering.",
   };
   document.addEventListener("world:open", e => { if (e.detail.first) setTimeout(() => SG.say(TIPS[e.detail.id] || ""), 450); });
 

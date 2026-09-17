@@ -118,46 +118,84 @@
   }
   document.addEventListener("world:open", e => { if (e.detail.id === "research") { view.hidden = true; map.hidden = false; } });
 
-  /* ---------- SHRINE: sacred things + wind chimes + spirit-quadrant quiz ---------- */
+  /* ---------- SHRINE: sacred things + spirit-quadrant quiz ---------- */
   const faveGrid = $("#faveGrid");
   if (faveGrid) C.faves.forEach(([k, v]) => faveGrid.append(
     h("div", { class: "fave" }, h("p", { class: "eyebrow", text: k }), h("p", { text: v }))));
 
+  /* ---------- FURIN: wind chimes with key selector ---------- */
   const NS = "http://www.w3.org/2000/svg";
   const sn = (t, a, p) => { const el = document.createElementNS(NS, t); for (const k in a) el.setAttribute(k, a[k]); p && p.append(el); return el; };
   const chimes = $("#chimes");
   if (chimes) {
-    // pentatonic (F# A B C# E) — soft & unresolved
-    const NOTES = [
-      { midi: 78, x: 60,  len: 130, hue: "#ffcfe6" },
-      { midi: 73, x: 130, len: 150, hue: "#c9a7ff" },
-      { midi: 71, x: 200, len: 170, hue: "#9ff5d8" },
-      { midi: 66, x: 270, len: 155, hue: "#ffe27a" },
-      { midi: 64, x: 340, len: 135, hue: "#ff8fc7" },
-    ];
-    // top bar
-    sn("rect", { x: 40, y: 28, width: 340, height: 6, rx: 3, fill: "#2a1638" }, chimes);
-    sn("circle", { cx: 210, cy: 22, r: 5, fill: "#ffe27a", stroke: "#2a1638", "stroke-width": 1.5 }, chimes);
-    sn("line", { x1: 210, y1: 26, x2: 210, y2: 12, stroke: "#2a1638", "stroke-width": 1.5 }, chimes);
-    const rods = NOTES.map((n, i) => {
-      const g = sn("g", { class: "chime", "data-i": i, style: `transform-origin:${n.x}px 34px` }, chimes);
-      sn("line", { x1: n.x, y1: 34, x2: n.x, y2: 44, stroke: "#2a1638", "stroke-width": 1.2 }, g);
-      sn("rect", { x: n.x - 4, y: 44, width: 8, height: n.len, rx: 4, fill: n.hue, stroke: "#2a1638", "stroke-width": 2 }, g);
-      sn("circle", { cx: n.x, cy: 44 + n.len + 4, r: 3.5, fill: "#2a1638" }, g);
-      g.style.animationDelay = `${-i * 0.9}s`;
-      const strike = () => {
-        SG.tone(SG.note(n.midi), 1.4, { type: "sine", vol: 0.11 });
-        SG.tone(SG.note(n.midi + 12), 1.0, { type: "sine", vol: 0.04, when: 0.005 });
-        g.classList.remove("struck"); void g.getBBox(); g.classList.add("struck");
-      };
-      g.addEventListener("pointerenter", () => { if (Math.random() < 0.35) strike(); });
-      g.addEventListener("click", strike);
-      return { g, strike };
-    });
-    // occasional wind
+    const SCALES = {
+      sunrise:  { name: "SUNRISE",  jp: "朝焼け",   midi: [72, 74, 76, 79, 81, 84, 86, 88] }, // C major pentatonic (C D E G A ...)
+      sakura:   { name: "SAKURA",   jp: "桜",       midi: [74, 75, 79, 81, 82, 86, 87, 91] }, // D hirajōshi
+      ocean:    { name: "OCEAN",    jp: "海",       midi: [71, 74, 76, 79, 83, 86, 88, 91] }, // spread minor
+      midnight: { name: "MIDNIGHT", jp: "夜",       midi: [69, 72, 74, 76, 79, 81, 84, 88] }, // A minor pentatonic
+      lullaby:  { name: "LULLABY",  jp: "子守唄",   midi: [77, 79, 81, 84, 86, 89, 91, 93] }, // F major-ish
+    };
+    const POS    = [40, 88, 136, 184, 232, 280, 328, 376];
+    const LENS   = [130, 150, 168, 180, 175, 158, 138, 120];
+    const COLORS = ["#ffcfe6", "#c9a7ff", "#9ff5d8", "#ffe27a", "#ff8fc7", "#ffcfe6", "#c9a7ff", "#9ff5d8"];
+
+    let currentScale = "sunrise";
+    let rods = [];
+
+    function buildRods() {
+      // top bar + hook
+      while (chimes.firstChild) chimes.removeChild(chimes.firstChild);
+      sn("rect", { x: 20, y: 28, width: 380, height: 6, rx: 3, fill: "#2a1638" }, chimes);
+      sn("circle", { cx: 210, cy: 22, r: 5, fill: "#ffe27a", stroke: "#2a1638", "stroke-width": 1.5 }, chimes);
+      sn("line", { x1: 210, y1: 26, x2: 210, y2: 12, stroke: "#2a1638", "stroke-width": 1.5 }, chimes);
+      const midis = SCALES[currentScale].midi;
+      rods = POS.map((x, i) => {
+        const midi = midis[i], len = LENS[i], hue = COLORS[i];
+        const g = sn("g", { class: "chime", "data-i": i, style: `transform-origin:${x}px 34px` }, chimes);
+        sn("line", { x1: x, y1: 34, x2: x, y2: 44, stroke: "#2a1638", "stroke-width": 1.2 }, g);
+        sn("rect", { x: x - 4, y: 44, width: 8, height: len, rx: 4, fill: hue, stroke: "#2a1638", "stroke-width": 2 }, g);
+        sn("circle", { cx: x, cy: 44 + len + 4, r: 3.5, fill: "#2a1638" }, g);
+        g.style.animationDelay = `${-i * 0.7}s`;
+        const strike = () => {
+          SG.tone(SG.note(midi), 1.6, { type: "sine", vol: 0.11 });
+          SG.tone(SG.note(midi + 12), 1.1, { type: "sine", vol: 0.035, when: 0.005 });
+          g.classList.remove("struck"); void g.getBBox(); g.classList.add("struck");
+        };
+        // slide-to-play: any pointerenter rings the chime (100%)
+        g.addEventListener("pointerenter", strike);
+        g.addEventListener("click", strike);
+        return { g, strike };
+      });
+    }
+
+    buildRods();
+
+    // key picker
+    const picker = $("#keyPicker");
+    if (picker) {
+      picker.innerHTML = "";
+      Object.entries(SCALES).forEach(([id, s]) => {
+        const btn = h("button", {
+          class: "key-btn" + (id === currentScale ? " on" : ""),
+          onclick: () => {
+            if (id === currentScale) return;
+            currentScale = id;
+            picker.querySelectorAll(".key-btn").forEach(b => b.classList.remove("on"));
+            btn.classList.add("on");
+            buildRods();
+            sfx.blip();
+            // preview scale as a soft glissando
+            rods.forEach((r, i) => setTimeout(r.strike, 120 + i * 110));
+          },
+        }, h("span", { class: "key-name", text: s.name }), h("span", { class: "key-jp", text: s.jp }));
+        picker.append(btn);
+      });
+    }
+
+    // occasional wind while the world is open
     setInterval(() => {
-      if (document.hidden || SG.openId !== "faves") return;
-      if (Math.random() < 0.4) rods[Math.floor(Math.random() * rods.length)].strike();
+      if (document.hidden || SG.openId !== "furin") return;
+      if (Math.random() < 0.3) rods[Math.floor(Math.random() * rods.length)].strike();
     }, 4200);
   }
 
