@@ -40,7 +40,7 @@ window.SITE = {
     entries: [                            // ✎ [icon, label, text]
       ["✎", "BUILDING",  "hardware cafe"],
       ["♫", "LISTENING", "indie meditation rave music"],
-      ["❏", "READING",   "a book about better plant health"],
+      ["❏", "READING",   "Antikythera journal"],
       ["✿", "LEARNING",  "category theory"],
       ["☕", "DRINKING",  "kava & kanna"],
       ["♡", "FEELING",   "flowing in a sea of stars"],
