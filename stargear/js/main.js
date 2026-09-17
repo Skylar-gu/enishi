@@ -85,10 +85,10 @@
     research: "each planet is a project. land on one to explore it!",
     phone: "tap the phone to flip it open. i love the snake game...",
     gacha: "one stardust per spin. there are 3 super rare charms!",
-    nagare: "move gently. one long slow breath and the mechanism notices.",
+    nagare: "welcome to the shrine ⛩️ ─ move gently, one long slow breath and the mechanism notices.",
     furin: "slide across the rods to play. tap a KEY on the right to retune.",
     wishes: "tie a wish to the bamboo ✦ you can click the strips to read them.",
-    faves: "take the quiz. read a little something. leave an offering.",
+    faves: "read an essay, take the quiz, or peek at 4 fun facts about me.",
   };
   document.addEventListener("world:open", e => { if (e.detail.first) setTimeout(() => SG.say(TIPS[e.detail.id] || ""), 450); });
 

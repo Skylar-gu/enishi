@@ -16,7 +16,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <link rel="stylesheet" href="css/style.css?v=15">
+  <link rel="stylesheet" href="css/style.css?v=16">
 </head>
 <body class="is-title">
   <canvas id="sky" aria-hidden="true"></canvas>
@@ -219,7 +219,7 @@
       </div>
     </section>
 
-    <!-- FURIN (wind chimes) -->
+    <!-- FURIN (wind chimes) — kept -->
     <section class="window wide" data-world="furin" aria-label="wind chimes" hidden>
       <div class="win-bar"><span>🎐 FURIN ─ 風鈴</span><button class="win-x" aria-label="close">✕</button></div>
       <div class="win-body furin-stage">
@@ -235,9 +235,9 @@
       </div>
     </section>
 
-    <!-- NAGARE (somatic meditation) -->
-    <section class="window wide" data-world="nagare" aria-label="somatic meditation" hidden>
-      <div class="win-bar"><span>💃 NAGARE ─ art · flow · somatic meditation</span><button class="win-x" aria-label="close">✕</button></div>
+    <!-- SHRINE (somatic meditation) -->
+    <section class="window wide" data-world="nagare" aria-label="shrine" hidden>
+      <div class="win-bar"><span>⛩️ SHRINE ─ art · flow · somatic meditation</span><button class="win-x" aria-label="close">✕</button></div>
       <div class="win-body nagare-stage">
         <div class="nagare-canvas-wrap">
           <canvas id="nagareCanvas" aria-label="somatic drawing canvas"></canvas>
@@ -275,21 +275,22 @@
       </div>
     </section>
 
-    <!-- SHRINE -->
-    <section class="window wide" data-world="faves" aria-label="shrine" hidden>
-      <div class="win-bar"><span>⛩️ SHRINE ─ sacred things</span><button class="win-x" aria-label="close">✕</button></div>
+    <!-- MIXTAPE -->
+    <section class="window wide" data-world="faves" aria-label="mixtape" hidden>
+      <div class="win-bar"><span>📼 MIXTAPE ─ vibes · essays · a quiz</span><button class="win-x" aria-label="close">✕</button></div>
       <div class="win-body faves">
-        <p class="shrine-altar">⛩ approach quietly. leave the day at the gate.</p>
-        <div class="sacred-things">
-          <p class="eyebrow sacred-eyebrow">SACRED THINGS ✦ 供物</p>
+        <div class="faves-left">
+          <a class="shrine-substack" href="https://skylartypical.substack.com" target="_blank" rel="noopener">
+            <span class="eyebrow">READ ME ✎</span>
+            <span class="ss-title">skylar typical</span>
+            <span class="ss-sub">little essays on substack →</span>
+          </a>
+          <div class="quiz panel" id="quiz"></div>
+        </div>
+        <div class="faves-right">
+          <p class="eyebrow sacred-eyebrow">FUN FACTS ✦ ちょっとしたもの</p>
           <div class="fave-grid" id="faveGrid"></div>
         </div>
-        <a class="shrine-substack" href="https://skylartypical.substack.com" target="_blank" rel="noopener">
-          <span class="eyebrow">READ ME ✎</span>
-          <span class="ss-title">skylar typical</span>
-          <span class="ss-sub">little essays on substack →</span>
-        </a>
-        <div class="quiz panel" id="quiz"></div>
       </div>
     </section>
   </div>
@@ -313,15 +314,15 @@
     </div>
   </div>
 
-  <script src="js/config.js?v=15"></script>
-  <script src="js/core.js?v=15"></script>
-  <script src="js/sprites.js?v=15"></script>
-  <script src="js/hub.js?v=15"></script>
-  <script src="js/worlds.js?v=15"></script>
-  <script src="js/phone.js?v=15"></script>
-  <script src="js/gacha.js?v=15"></script>
-  <script src="js/nagare.js?v=15"></script>
-  <script src="js/wishes.js?v=15"></script>
-  <script src="js/main.js?v=15"></script>
+  <script src="js/config.js?v=16"></script>
+  <script src="js/core.js?v=16"></script>
+  <script src="js/sprites.js?v=16"></script>
+  <script src="js/hub.js?v=16"></script>
+  <script src="js/worlds.js?v=16"></script>
+  <script src="js/phone.js?v=16"></script>
+  <script src="js/gacha.js?v=16"></script>
+  <script src="js/nagare.js?v=16"></script>
+  <script src="js/wishes.js?v=16"></script>
+  <script src="js/main.js?v=16"></script>
 </body>
 </html>
