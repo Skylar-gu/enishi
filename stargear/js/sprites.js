@@ -53,7 +53,7 @@ SG.SPRITES = {
     "..khhksewsss",
     "..khhkseesss",
     "..khhksrrsss",
-    "..khhhkssssr",
+    "..khhhksssss",
     "..khhhhkssss",
     "..khhhhhkkkk",
     "...khhhkccss",
@@ -65,11 +65,10 @@ SG.SPRITES = {
 };
 SG.SPRITES.unicornBlink = SG.SPRITES.unicorn.map((r, i) => i === 7 ? "kwwwkwwwwwwkwwwk" : r);
 
-// smile: an open, intelligent smile showing teeth (24-wide sprite coords, applied after mirror)
-SG.SMILE = [
-  [10, 15, "k"], [13, 15, "k"],                                   // upper-lip corners raised
-  [10, 16, "k"], [11, 16, "w"], [12, 16, "w"], [13, 16, "k"],     // teeth (w) between dark corner outlines
-  [11, 17, "k"], [12, 17, "k"],                                    // lower-lip arc
+// face: tiny nose (1 skin-shadow pixel between the cheeks) + simple 2-pixel mouth
+SG.FACE = [
+  [11, 15, "S"],                  // subtle nose
+  [11, 16, "k"], [12, 16, "k"],   // simple 2-pixel mouth
 ];
 
-SG.drawPortrait = c => SG.drawSprite(c, SG.SPRITES.girlHalf, { mirror: true, overlay: SG.SMILE });
+SG.drawPortrait = c => SG.drawSprite(c, SG.SPRITES.girlHalf, { mirror: true, overlay: SG.FACE });
