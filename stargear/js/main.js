@@ -104,6 +104,33 @@
     SG.say(lines[talk++ % lines.length]);
   });
 
+  /* ---------- welcome cycler (big colorful multilingual) ---------- */
+  const WELCOMES = ["WELCOME", "ようこそ", "欢迎", "환영해요", "BIENVENUE", "WILLKOMMEN", "BENVENUTO", "VELKOMMEN", "स्वागत", "أهلاً"];
+  const WCOLORS = ["var(--pink)", "var(--gold)", "var(--mint)", "var(--hot)", "var(--lav)", "var(--blush)"];
+  const welcomeLogo = $("#welcomeLogo");
+  const renderWelcome = word => {
+    welcomeLogo.innerHTML = "";
+    [...word].forEach((ch, i) => {
+      const s = document.createElement("span");
+      s.textContent = ch;
+      s.style.color = WCOLORS[i % WCOLORS.length];
+      s.style.animationDelay = `${(i * 0.12).toFixed(2)}s`;
+      welcomeLogo.appendChild(s);
+    });
+  };
+  let welcomeIdx = 0;
+  if (welcomeLogo) {
+    renderWelcome(WELCOMES[0]);
+    setInterval(() => {
+      welcomeLogo.classList.add("hiding");
+      setTimeout(() => {
+        welcomeIdx = (welcomeIdx + 1) % WELCOMES.length;
+        renderWelcome(WELCOMES[welcomeIdx]);
+        welcomeLogo.classList.remove("hiding");
+      }, 400);
+    }, 2800);
+  }
+
   /* ---------- title → hub ---------- */
   let started = false;
   function start() {
