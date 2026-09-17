@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- ✎ COPY THIS FOLDER to worlds/<your-world-id>/ and make it your own.
+       Then set `page: "worlds/<your-world-id>/"` for that world in js/config.js. -->
+  <title>World Template · STAR☆GEAR</title>
+  <meta name="description" content="A research world on STAR☆GEAR.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪐</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    /* ✎ change --c to this world's color */
+    body { --c: #9ff5d8; }
+    .world-page { position: relative; z-index: 2; max-width: 980px; margin: 0 auto; padding: calc(var(--hud-h) + 24px) 16px 80px; }
+    .world-hero { display: flex; gap: 36px; align-items: center; flex-wrap: wrap; margin-bottom: 28px; }
+    .world-hero h1 { font-family: var(--pixel); font-weight: 400; font-size: clamp(22px, 5vw, 40px); margin: 0; color: var(--c); text-shadow: 4px 4px 0 var(--ink); }
+    .world-hero .planet { --size: 150px; margin-left: 24px; animation: float 4s ease-in-out infinite; }
+    .zones { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin: 22px 0; }
+    .zone h2 { font-family: var(--pixel); font-size: 12px; margin: 0 0 10px; color: var(--gold); font-weight: 400; }
+    .zone p { margin: 0 0 8px; }
+    .log { list-style: none; padding: 0; margin: 0; border-left: 3px dashed var(--pink); }
+    .log li { padding: 0 0 14px 18px; position: relative; }
+    .log li::before { content: "✦"; position: absolute; left: -9px; top: 0; color: var(--gold); background: var(--night-2); line-height: 1; }
+    .log b { font-family: var(--pixel); font-size: 8px; color: var(--pink); font-weight: 400; display: block; margin-bottom: 2px; }
+    .specimens { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+    .specimen { aspect-ratio: 1; border: 3px dashed rgba(255,207,230,.4); border-radius: 12px; display: grid; place-items: center; color: var(--muted); font-size: 13px; text-align: center; padding: 8px; }
+    .world-hud-title { font-family: var(--pixel); font-size: 10px; }
+  </style>
+</head>
+<body>
+  <canvas id="sky" aria-hidden="true" style="background: radial-gradient(#fff 1px, transparent 1.5px) 0 0/40px 40px; opacity:.25"></canvas>
+
+  <header id="hud">
+    <a class="hud-logo" href="../../#research" style="text-decoration:none">← STAR MAP</a>
+    <span class="world-hud-title">🪐 WORLD 02</span>
+  </header>
+
+  <main class="world-page">
+    <section class="world-hero">
+      <span class="planet ringed"><span class="planet-shine"></span></span>
+      <div>
+        <p class="eyebrow">RESEARCH WORLD · ▶ EXPLORING</p>
+        <h1>WORLD 02</h1>
+        <p class="jp">研究</p>
+        <p>✎ one sentence about what this world (project) is.</p>
+      </div>
+    </section>
+
+    <div class="zones">
+      <section class="zone card">
+        <h2>☉ THE QUESTION</h2>
+        <p>✎ what made you curious? what were you trying to find out?</p>
+      </section>
+      <section class="zone card">
+        <h2>⚙ THE MACHINERY</h2>
+        <p>✎ methods, tools, data, materials. how did it work?</p>
+      </section>
+    </div>
+
+    <section class="zone card">
+      <h2>✎ EXPEDITION LOG</h2>
+      <ul class="log">
+        <li><b>DAY 1</b>✎ landed here. first observations...</li>
+        <li><b>DAY 12</b>✎ something broke. something else worked.</li>
+        <li><b>DAY 30</b>✎ a discovery!</li>
+      </ul>
+    </section>
+
+    <section class="zone card" style="margin-top:18px">
+      <h2>✿ SPECIMENS</h2>
+      <p class="muted">✎ images, plots, demos, sketches. swap these boxes for &lt;img&gt; tags.</p>
+      <div class="specimens">
+        <div class="specimen">✎ figure 1</div>
+        <div class="specimen">✎ figure 2</div>
+        <div class="specimen">✎ figure 3</div>
+      </div>
+    </section>
+
+    <div class="zones">
+      <section class="zone card">
+        <h2>★ FINDINGS</h2>
+        <p>✎ what did you learn?</p>
+      </section>
+      <section class="zone card">
+        <h2>↗ PORTALS</h2>
+        <p>✎ <a href="#">paper</a> · <a href="#">code</a> · <a href="#">slides</a></p>
+      </section>
+    </div>
+
+    <p style="text-align:center; margin-top:34px"><a class="btn" href="../../#research">← BACK TO THE STAR MAP</a></p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>STAR☆GEAR</title>
+  <meta name="description" content="A clockwork personal website: an antikythera mechanism, a flip phone, a gacha machine, and seven hidden star shards.">
+  <meta name="author" content="Skylar">
+  <meta property="og:title" content="STAR☆GEAR">
+  <meta property="og:description" content="a clockwork little world ✦ press start">
+  <meta name="theme-color" content="#1b1033">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="is-title">
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- ============ HUD (phone status bar) ============ -->
+  <header id="hud">
+    <div class="hud-left">
+      <span class="signal" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <button class="hud-logo" id="homeBtn" title="back to the mechanism">STAR☆GEAR</button>
+    </div>
+    <div class="hud-mid">
+      <span class="shards" id="shardDots" title="star shards found"></span>
+    </div>
+    <div class="hud-right">
+      <span class="coins" title="stardust (spend it at the gacha)">✦<b id="coinCount">0</b></span>
+      <span class="clock" id="hudClock">00:00</span>
+      <button class="hud-btn" id="soundBtn" aria-pressed="true" title="sound effects">♪</button>
+      <button class="hud-btn" id="musicBtn" aria-pressed="false" title="chiptune music">♫</button>
+      <button class="hud-btn" id="motionBtn" aria-pressed="false" title="calm mode (less motion)">☾</button>
+    </div>
+  </header>
+
+  <!-- ============ TITLE SCREEN ============ -->
+  <section id="title" aria-label="title screen">
+    <div class="title-gear" id="titleGear" aria-hidden="true"></div>
+    <div class="title-inner">
+      <p class="title-kicker">〜 a clockwork world by <span data-site="name"></span> 〜</p>
+      <h1 class="logo"><span>STAR</span><em>☆</em><span>GEAR</span></h1>
+      <p class="jp" data-site="jpTagline"></p>
+      <button class="press-start" id="startBtn">▶ PRESS START</button>
+      <p class="title-foot">© 2026 <span data-site="handle"></span> ✦ best viewed on a flip phone ✦ 星の歯車</p>
+    </div>
+  </section>
+
+  <!-- ============ HUB: THE MECHANISM ============ -->
+  <main id="hub" aria-label="the mechanism">
+    <div class="dial-wrap">
+      <div class="dial-box" id="dialBox">
+        <svg id="dial" viewBox="-300 -300 600 600" role="group" aria-label="world selector dial"></svg>
+      </div>
+      <p class="hint">drag the dial · ← → to turn · ENTER to warp</p>
+    </div>
+
+    <aside class="side">
+      <div class="card hello">
+        <canvas class="pixel portrait-sm" id="helloPortrait" width="24" height="24" aria-hidden="true"></canvas>
+        <div>
+          <p class="eyebrow">PLAYER 1</p>
+          <h2 data-site="name"></h2>
+          <p class="muted" data-site="tagline"></p>
+        </div>
+      </div>
+
+      <div class="card world-card" id="worldCard" aria-live="polite">
+        <p class="eyebrow">POINTER ▸ <span id="wcPlanet"></span></p>
+        <h3 id="wcTitle"></h3>
+        <p id="wcJp" class="jp small"></p>
+        <p id="wcDesc"></p>
+        <button class="btn" id="warpBtn">WARP ▶</button>
+      </div>
+
+      <nav class="card quicknav" aria-label="all worlds">
+        <p class="eyebrow">MAP</p>
+        <div id="quickNav"></div>
+      </nav>
+    </aside>
+  </main>
+
+  <!-- ============ WORLD WINDOWS ============ -->
+  <div id="windows">
+
+    <!-- ABOUT -->
+    <section class="window" data-world="about" aria-label="about me" hidden>
+      <div class="win-bar"><span>☾ STATUS ─ about me</span><button class="win-x" aria-label="close">✕</button></div>
+      <div class="win-body about">
+        <div class="status-top">
+          <div class="portrait-frame"><canvas class="pixel portrait" id="portrait" width="24" height="24"></canvas></div>
+          <div class="status-id">
+            <h2 data-site="name"></h2>
+            <p class="muted"><span id="aboutClass"></span></p>
+            <p class="lv">LV <b id="aboutLevel"></b></p>
+            <div class="bar hp"><span>HP</span><i style="--v:100%"></i></div>
+            <div class="bar mp"><span>MP</span><i style="--v:72%"></i></div>
+          </div>
+        </div>
+        <div class="status-grid">
+          <div class="panel"><p class="eyebrow">STATS</p><div id="aboutStats"></div></div>
+          <div class="panel"><p class="eyebrow">EQUIPMENT</p><dl id="aboutEquip"></dl></div>
+        </div>
+        <div class="rpg-dialog" id="bioDialog" tabindex="0" role="button" aria-label="next dialog page">
+          <p id="bioText"></p><span class="next">▼</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOW -->
+    <section class="window" data-world="now" aria-label="now" hidden>
+      <div class="win-bar"><span>✎ DIARY ─ what i'm up to now</span><button class="win-x" aria-label="close">✕</button></div>
+      <div class="win-body">
+        <p class="save-head">SAVE FILE 01 · last saved <b id="nowUpdated"></b></p>
+        <ul class="now-list" id="nowList"></ul>
+      </div>
+    </section>
+
+    <!-- RESEARCH WORLDS -->
+    <section class="window wide" data-world="research" aria-label="research worlds" hidden>
+      <div class="win-bar"><span>♃ RESEARCH WORLDS ─ projects</span><button class="win-x" aria-label="close">✕</button></div>
+      <div class="win-body research">
+        <div class="starmap" id="starmap">
+          <div class="rs-intro">
+            <p class="eyebrow">STAR MAP</p>
+            <p>every project is its own little world. pick a planet and land on it ✦</p>
+          </div>
+          <div class="orbits" id="orbits"></div>
+        </div>
+        <article class="planet-view" id="planetView" hidden></article>
+      </div>
+    </section>
+
+    <!-- KEITAI -->
+    <section class="window wide" data-world="phone" aria-label="flip phone" hidden>
+      <div class="win-bar"><span>✆ KEITAI ─ my flip phone</span><button class="win-x" aria-label="close">✕</button></div>
+      <div class="win-body phone-stage">
+        <div class="phone closed" id="phone">
+          <div class="lid" id="lid">
+            <div class="lid-face lid-in">
+              <div class="speaker"></div>
+              <div class="screen" id="screen">
+                <div class="sbar"><span class="sig">▂▄▆█</span><span id="phClock">00:00</span><span>▮▮▮</span></div>
+                <div class="sbody" id="sbody"></div>
+                <div class="skeys"><span id="skL">MENU</span><span id="skR">BACK</span></div>
+              </div>
+              <p class="brand">SKY-PHONE</p>
+            </div>
+            <button class="lid-face lid-out" id="lidOut" aria-label="open the phone">
+              <span class="cam"></span>
+              <span class="mini-screen"><b id="miniClock">00:00</b><small>tap to open ♡</small></span>
+              <span class="lid-sticker s1">★</span><span class="lid-sticker s2">♡</span><span class="lid-sticker s3">✿</span>
+            </button>
+          </div>
+          <div class="base">
+            <div class="keys" id="keys">
+              <button data-k="sl" class="k soft">◤</button>
+              <div class="dpad">
+                <button data-k="up" class="k d up" aria-label="up">▲</button>
+                <button data-k="left" class="k d left" aria-label="left">◀</button>
+                <button data-k="ok" class="k d ok" aria-label="ok">●</button>
+                <button data-k="right" class="k d right" aria-label="right">▶</button>
+                <button data-k="down" class="k d down" aria-label="down">▼</button>
+              </div>
+              <button data-k="sr" class="k soft">◥</button>
+              <button data-k="call" class="k call" aria-label="call">✆</button>
+              <button data-k="close" class="k end" aria-label="close phone">✕</button>
+              <button data-k="1" class="k n">1<small>✉</small></button>
+              <button data-k="2" class="k n">2<small>abc</small></button>
+              <button data-k="3" class="k n">3<small>def</small></button>
+              <button data-k="4" class="k n">4<small>ghi</small></button>
+              <button data-k="5" class="k n">5<small>jkl</small></button>
+              <button data-k="6" class="k n">6<small>mno</small></button>
+              <button data-k="7" class="k n">7<small>pqrs</small></button>
+              <button data-k="8" class="k n">8<small>tuv</small></button>
+              <button data-k="9" class="k n">9<small>wxyz</small></button>
+              <button data-k="*" class="k n">*<small>☆</small></button>
+              <button data-k="0" class="k n">0<small>♡</small></button>
+              <button data-k="#" class="k n">#<small>♪</small></button>
+            </div>
+            <div class="mic"></div>
+          </div>
+          <div class="strap" id="strap" aria-hidden="true"><i></i><span id="strapCharm">🍓</span></div>
+        </div>
+        <div class="phone-help">
+          <p class="eyebrow">HOW TO USE</p>
+          <p>tap the phone to flip it open. use the d-pad (or arrow keys) and ● / ENTER to pick apps. number keys work too!</p>
+          <p class="muted">psst — composers who write a long enough melody get a surprise.</p>
+          <p class="muted">your phone strap is the last charm you pulled from the gacha.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GACHA -->
+    <section class="window wide" data-world="gacha" aria-label="gacha machine" hidden>
+      <div class="win-bar"><span>✿ GACHAPON ─ phone charms</span><button class="win-x" aria-label="close">✕</button></div>
+      <div class="win-body gacha-stage">
+        <div class="machine">
+          <div class="dome" id="dome"></div>
+          <div class="m-body">
+            <p class="m-label">ガチャ ✦ 1 STARDUST</p>
+            <button class="knob" id="knob" aria-label="turn the crank (costs 1 stardust)"><span></span></button>
+            <div class="chute"><button class="capsule-out" id="capsuleOut" hidden aria-label="open capsule"></button></div>
+          </div>
+          <div class="m-feet"></div>
+        </div>
+        <div class="gacha-side">
+          <div class="reveal" id="reveal" aria-live="polite"><p class="muted">turn the crank! earn more stardust by playing games and finding secrets ✦</p></div>
+          <p class="eyebrow">CHARM BOOK <span id="bookCount"></span></p>
+          <div class="book" id="book"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALIBRATE PUZZLE -->
+    <section class="window wide" data-world="calibrate" aria-label="gear puzzle" hidden>
+      <div class="win-bar"><span>⚙ CALIBRATE ─ gear puzzle</span><button class="win-x" aria-label="close">✕</button></div>
+      <div class="win-body puzzle-stage">
+        <div class="puzzle-box"><svg id="puzzle" viewBox="-160 -170 320 330" aria-label="three gear rings"></svg></div>
+        <div class="puzzle-side">
+          <p>the mechanism slipped out of alignment! turn the cranks until <b>☉ ☾ ✦</b> line up under the pointer.</p>
+          <p class="muted">but careful — the gears are meshed. each crank turns more than one ring.</p>
+          <div class="cranks" id="cranks"></div>
+          <p class="moves">MOVES <b id="moves">0</b></p>
+          <button class="btn ghost" id="scramble">↻ SCRAMBLE</button>
+          <p class="win-msg" id="puzzleMsg" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WISHES -->
+    <section class="window wide" data-world="wishes" aria-label="wish tree" hidden>
+      <div class="win-bar"><span>☆ TANABATA ─ wish tree</span><button class="win-x" aria-label="close">✕</button></div>
+      <div class="win-body wish-stage">
+        <div class="tree-box"><svg id="tree" viewBox="0 0 300 360" aria-label="bamboo with paper wishes"></svg></div>
+        <form class="wish-form" id="wishForm">
+          <p>on tanabata you write a wish on a paper strip (短冊) and tie it to bamboo. leave one here!</p>
+          <label for="wishText" class="eyebrow">YOUR WISH</label>
+          <textarea id="wishText" maxlength="60" rows="3" placeholder="i wish for..." required></textarea>
+          <div class="swatches" id="swatches" role="radiogroup" aria-label="paper color"></div>
+          <button class="btn" type="submit">HANG IT ♡</button>
+          <p class="muted small">wishes are kept on your own device, so only you (and the stars) can see them.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- FAVES SHRINE -->
+    <section class="window wide" data-world="faves" aria-label="favorite things" hidden>
+      <div class="win-bar"><span>♡ SHRINE ─ favorite things</span><button class="win-x" aria-label="close">✕</button></div>
+      <div class="win-body faves">
+        <div class="fave-grid" id="faveGrid"></div>
+        <div class="quiz panel" id="quiz"></div>
+        <div class="buttons88">
+          <p class="eyebrow">LINK ME! (88×31)</p>
+          <div class="b88" aria-label="88 by 31 site button"><span class="b88-gear">⚙</span><span class="b88-t">STAR☆GEAR</span></div>
+          <p class="muted small">copy the button and link back to this site ✦</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ MASCOT ============ -->
+  <div id="mascot">
+    <div class="bubble" id="bubble" aria-live="polite"></div>
+    <button class="mascot-btn" id="mascotBtn" aria-label="talk to hoshi the gear bunny">
+      <canvas class="pixel" id="bunny" width="16" height="16"></canvas>
+    </button>
+  </div>
+
+  <div id="toast" aria-live="assertive"></div>
+  <div id="ending" hidden>
+    <div class="ending-inner">
+      <p class="eyebrow">ALL 7 SHARDS</p>
+      <h2>THE MECHANISM<br>IS COMPLETE</h2>
+      <p class="jp">おめでとう！</p>
+      <div class="credits" id="credits"></div>
+      <button class="btn" id="endingClose">CONTINUE ▶</button>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/sprites.js"></script>
+  <script src="js/hub.js"></script>
+  <script src="js/worlds.js"></script>
+  <script src="js/phone.js"></script>
+  <script src="js/gacha.js"></script>
+  <script src="js/puzzle.js"></script>
+  <script src="js/wishes.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
