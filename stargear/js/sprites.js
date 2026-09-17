@@ -17,18 +17,18 @@ SG.drawSprite = function (canvas, rows, { mirror = false, overlay = [] } = {}) {
 
 SG.SPRITES = {
   unicorn: [
-    "........k.......",
-    ".......kyk......",
-    ".......kBk......",
-    ".......kyk......",
-    "......kyByk.....",
-    ".....kwwwwwk....",
-    "....kwwwwwwwk...",
-    "...kwwwwwwwwwk..",
-    "..kwppwwwwwppwk.",
-    "..kwwwewwwewwwk.",
-    "..kwwwwwwwwwwwk.",
-    "..kwrwwwwwwwrwk.",
+    ".......kk.......",
+    "......kyyk......",
+    "......kBBk......",
+    "......kyyk......",
+    ".....kyBByk.....",
+    "....kwwwwwwk....",
+    "...kwwwwwwwwk...",
+    "..kwwwwwwwwwwk..",
+    "..kwppwwwwppwk..",
+    "..kwwewwwwewwk..",
+    "..kwwwwwwwwwwk..",
+    "..kwrwwwwwwrwk..",
     "..kkkwwwwwwkkk..",
     "..pkkkkkkkkkkp..",
     "..pkwwwwwwwwkp..",
@@ -63,7 +63,7 @@ SG.SPRITES = {
     "...kcccccccc",
   ],
 };
-SG.SPRITES.unicornBlink = SG.SPRITES.unicorn.map((r, i) => i === 9 ? "..kwwwkwwwkwwwk." : r);
+SG.SPRITES.unicornBlink = SG.SPRITES.unicorn.map((r, i) => i === 9 ? "..kwwkwwwwkwwk.." : r);
 
 // face: tiny nose + asymmetric smirk (right corner curls up)
 SG.FACE = [

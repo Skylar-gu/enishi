@@ -84,8 +84,7 @@
 
   /* ---------- MENU ---------- */
   const APPS = () => [
-    ["✉", "MAIL", mail], ["☎", "CONTACTS", contacts], ["§", "SNAKE", snake],
-    ["♫", "MELODY", melody], ["✧", "FORTUNE", fortune], ["▦", "WALLPAPER", wallpaper],
+    ["☎", "CONTACTS", contacts], ["▦", "WALLPAPER", wallpaper],
   ];
   let menuSel = 0;
   const menu = {
@@ -93,19 +92,22 @@
     start() {
       body.classList.add("menu");
       body.append(h("p", { class: "ph-title", text: "✦ MENU ✦" }));
-      const grid = h("div", { class: "ph-grid" });
+      const grid = h("div", { class: "ph-grid two" });
       APPS().forEach(([ic, name, a], i) => grid.append(h("button", { class: "ph-app" + (i === menuSel ? " sel" : ""), tabindex: -1, onclick: () => { menuSel = i; launch(a); } },
         h("span", { class: "ic", text: ic }), h("span", { text: `${i + 1} ${name}` }))));
-      body.append(grid, h("p", { class: "ph-foot", text: APPS()[menuSel][1] }));
+      body.append(grid,
+        h("p", { class: "ph-foot", text: APPS()[menuSel][1] }),
+        h("button", { class: "ph-send-btn", onclick: () => launch(mail) }, "✉ SEND A MESSAGE"));
       this.grid = grid;
     },
     key(k) {
       const n = APPS().length;
-      if (k === "left") menuSel = (menuSel + n - 1) % n;
+      if (k === "left")  menuSel = (menuSel + n - 1) % n;
       if (k === "right") menuSel = (menuSel + 1) % n;
-      if (k === "up") menuSel = (menuSel + n - 3) % n;
-      if (k === "down") menuSel = (menuSel + 3) % n;
-      if (/^[1-6]$/.test(k)) { menuSel = +k - 1; launch(APPS()[menuSel][2]); return; }
+      if (k === "up")    menuSel = (menuSel + n - 1) % n;
+      if (k === "down")  menuSel = (menuSel + 1) % n;
+      if (/^[1-2]$/.test(k)) { menuSel = +k - 1; launch(APPS()[menuSel][2]); return; }
+      if (k === "3") { launch(mail); return; }
       if (k === "ok" || k === "sl" || k === "call") { launch(APPS()[menuSel][2]); return; }
       [...this.grid.children].forEach((b, i) => b.classList.toggle("sel", i === menuSel));
       body.querySelector(".ph-foot").textContent = APPS()[menuSel][1];

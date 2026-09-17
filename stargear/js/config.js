@@ -106,10 +106,9 @@ window.SITE = {
 
   // ---- CONTACTS (shown in the phone's address book) ----
   contacts: [                             // ✎
-    { name: "GitHub",   icon: "⌘", url: "https://github.com/skylargu" },
     { name: "Email",    icon: "✉", url: "mailto:skylarl.gu@gmail.com" },
+    { name: "GitHub",   icon: "⌘", url: "https://github.com/skylargu" },
     { name: "LinkedIn", icon: "in", url: "https://www.linkedin.com/" },
-    { name: "Instagram",icon: "◎", url: "https://www.instagram.com/" },
   ],
 
   // ---- FAVORITES SHRINE ----
