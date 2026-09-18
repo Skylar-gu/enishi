@@ -17,7 +17,7 @@
     { id: "gacha",     glyph: "🎱", title: "GACHAPON",        jp: "ガチャガチャ", planet: "SUN",     desc: "spin for capsule charms." },
     { id: "nagare",    glyph: "🪷", title: "SHRINE",          jp: "せいち",       planet: "SATURN",  desc: "art · flow · somatic meditation." },
     { id: "wishes",    glyph: "☆", title: "WISH TREE",       jp: "たなばた",     planet: "MARS",    desc: "leave a wish on the bamboo." },
-    { id: "faves",     glyph: "♡", title: "MIXTAPE",         jp: "おきにいり",   planet: "EARTH",   desc: "essays, a spirit quiz, and 3 fun facts." },
+    { id: "faves",     glyph: "♡", title: "MIXTAPE",         jp: "おきにいり",   planet: "EARTH",   desc: "essays and a spirit quiz." },
   ];
   const N = SG.WORLDS.length, STEP = 360 / N;
 
