@@ -167,7 +167,7 @@ a { color: var(--pink); }
 .node .bob { animation: bob 3s ease-in-out infinite; }
 .node-ring { fill: none; stroke: var(--blush); stroke-width: 2; stroke-dasharray: 6 5; opacity: .5; }
 .node-disc { fill: var(--night-2); stroke: var(--ink); stroke-width: 3; transition: fill .2s; }
-.node-glyph { font-size: 26px; fill: #fff; font-family: var(--dot); pointer-events: none; font-variant-emoji: text; filter: grayscale(1) brightness(0) invert(1); }
+.node-glyph { font-size: 22px; fill: #fff; font-family: "Noto Emoji", var(--dot); pointer-events: none; font-variant-emoji: text; }
 .node:hover .node-disc { fill: #4a2d80; }
 .node.on .node-disc { fill: var(--hot); }
 .node.on .node-glyph { fill: #fff; }
