@@ -9,15 +9,21 @@
     return el;
   };
 
+  // Inline SVG icons (~22px). Everything drawn in pure white so no theme tinting issues.
+  const ICON = {
+    torii: '<path d="M-10 -7 Q0 -10 10 -7 L10 -5 L-10 -5 Z" fill="#fff"/><line x1="-9" y1="-2" x2="9" y2="-2" stroke="#fff" stroke-width="2" stroke-linecap="round"/><line x1="-6" y1="-2" x2="-6" y2="9" stroke="#fff" stroke-width="2" stroke-linecap="round"/><line x1="6" y1="-2" x2="6" y2="9" stroke="#fff" stroke-width="2" stroke-linecap="round"/>',
+    globe: '<circle cx="0" cy="0" r="9" fill="none" stroke="#fff" stroke-width="2"/><ellipse cx="0" cy="0" rx="9" ry="3.5" fill="none" stroke="#fff" stroke-width="1.5"/><line x1="0" y1="-9" x2="0" y2="9" stroke="#fff" stroke-width="1.5"/>',
+    ball:  '<circle cx="0" cy="0" r="9" fill="none" stroke="#fff" stroke-width="2"/><line x1="-9" y1="0" x2="9" y2="0" stroke="#fff" stroke-width="1.5"/><circle cx="-3" cy="-3" r="1.5" fill="#fff"/>',
+  };
   SG.WORLDS = [
-    { id: "about",     glyph: "⛩️", title: "STATUS",          jp: "ステータス",   planet: "MOON",    desc: "fun stats to share." },
-    { id: "now",       glyph: "✎", title: "JOURNAL",         jp: "にっき",       planet: "MERCURY", desc: "what i'm up to lately." },
-    { id: "research",  glyph: "🌏", title: "RESEARCH WORLDS", jp: "けんきゅう",   planet: "JUPITER", desc: "explore my past projects." },
-    { id: "phone",     glyph: "📜", title: "KEITAI",          jp: "ケータイ",     planet: "VENUS",   desc: "my flip phone · contacts & tiny apps." },
-    { id: "gacha",     glyph: "🥎", title: "GACHAPON",        jp: "ガチャガチャ", planet: "SUN",     desc: "spin for capsule charms." },
-    { id: "nagare",    glyph: "🪷", title: "SHRINE",          jp: "せいち",       planet: "SATURN",  desc: "art · flow · somatic meditation." },
-    { id: "wishes",    glyph: "☆", title: "WISH TREE",       jp: "たなばた",     planet: "MARS",    desc: "leave a wish on the bamboo." },
-    { id: "faves",     glyph: "♡", title: "MIXTAPE",         jp: "おきにいり",   planet: "EARTH",   desc: "essays and a spirit quiz." },
+    { id: "about",     svg: ICON.torii,  title: "STATUS",          jp: "ステータス",   planet: "MOON",    desc: "fun stats to share." },
+    { id: "now",       glyph: "✎",       title: "JOURNAL",         jp: "にっき",       planet: "MERCURY", desc: "what i'm up to lately." },
+    { id: "research",  svg: ICON.globe,  title: "RESEARCH WORLDS", jp: "けんきゅう",   planet: "JUPITER", desc: "explore my past projects." },
+    { id: "phone",     glyph: "📜",      title: "KEITAI",          jp: "ケータイ",     planet: "VENUS",   desc: "my flip phone · contacts & tiny apps." },
+    { id: "gacha",     svg: ICON.ball,   title: "GACHAPON",        jp: "ガチャガチャ", planet: "SUN",     desc: "spin for capsule charms." },
+    { id: "nagare",    glyph: "🪷",      title: "SHRINE",          jp: "せいち",       planet: "SATURN",  desc: "art · flow · somatic meditation." },
+    { id: "wishes",    glyph: "☆",       title: "WISH TREE",       jp: "たなばた",     planet: "MARS",    desc: "leave a wish on the bamboo." },
+    { id: "faves",     glyph: "♡",       title: "MIXTAPE",         jp: "おきにいり",   planet: "EARTH",   desc: "essays and a spirit quiz." },
   ];
   const N = SG.WORLDS.length, STEP = 360 / N;
 
@@ -107,7 +113,12 @@
     const bob = s("g", { class: "bob", style: `animation-delay:${-i * 0.4}s` }, g);
     s("circle", { r: 31, class: "node-ring" }, bob);
     s("circle", { r: 25, class: "node-disc" }, bob);
-    s("text", { class: "node-glyph", "text-anchor": "middle", "dominant-baseline": "central" }, bob).textContent = w.glyph;
+    if (w.svg) {
+      const icon = s("g", { class: "node-icon", "pointer-events": "none" }, bob);
+      icon.innerHTML = w.svg;
+    } else {
+      s("text", { class: "node-glyph", "text-anchor": "middle", "dominant-baseline": "central" }, bob).textContent = w.glyph;
+    }
     return g;
   });
 

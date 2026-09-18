@@ -20,19 +20,19 @@ SG.SPRITES = {
     ".......kk.......",
     "......kyyk......",
     "......kBBk......",
-    "......kyyk......",
     ".....kyBByk.....",
-    "....kwwwwwwk....",
-    "...kwwwwwwwwk...",
-    "..kwwwwwwwwwwk..",
-    "..kwppwwwwppwk..",
+    "..kk.kyBByk.kk..",
+    ".kwkkwwwwwwkkwk.",
+    ".kwwwwwwwwwwwwk.",
     "..kwwewwwwewwk..",
     "..kwwwwwwwwwwk..",
     "..kwrwwwwwwrwk..",
+    "..kwwwwwwwwwwk..",
     "..kkkwwwwwwkkk..",
     "..pkkkkkkkkkkp..",
     "..pkwwwwwwwwkp..",
     "..kwwk....kwwk..",
+    "...kk......kk...",
   ],
   unicornBlink: null, // filled below
   // left half of a 24×24 portrait; mirrored at draw time
@@ -63,7 +63,7 @@ SG.SPRITES = {
     "...kcccccccc",
   ],
 };
-SG.SPRITES.unicornBlink = SG.SPRITES.unicorn.map((r, i) => i === 9 ? "..kwwkwwwwkwwk.." : r);
+SG.SPRITES.unicornBlink = SG.SPRITES.unicorn.map((r, i) => i === 7 ? "..kwwkwwwwkwwk.." : r);
 
 // face: tiny nose + asymmetric smirk (right corner curls up)
 SG.FACE = [
