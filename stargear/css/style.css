@@ -167,7 +167,7 @@ a { color: var(--pink); }
 .node .bob { animation: bob 3s ease-in-out infinite; }
 .node-ring { fill: none; stroke: var(--blush); stroke-width: 2; stroke-dasharray: 6 5; opacity: .5; }
 .node-disc { fill: var(--night-2); stroke: var(--ink); stroke-width: 3; transition: fill .2s; }
-.node-glyph { font-size: 26px; fill: var(--blush); font-family: var(--dot); pointer-events: none; }
+.node-glyph { font-size: 26px; fill: #fff; font-family: var(--dot); pointer-events: none; font-variant-emoji: text; }
 .node:hover .node-disc { fill: #4a2d80; }
 .node.on .node-disc { fill: var(--hot); }
 .node.on .node-glyph { fill: #fff; }
@@ -555,9 +555,8 @@ textarea#wishText { font: 16px var(--dot); background: var(--cream); color: var(
 .wish-form .btn { align-self: flex-start; }
 
 /* ---------- mixtape (faves) ---------- */
-.faves { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
-.faves-left { display: flex; flex-direction: column; gap: 16px; }
-.faves-right { display: flex; flex-direction: column; gap: 10px; }
+.faves { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+.faves-right { display: flex; flex-direction: column; gap: 16px; }
 .chimes-wrap {
   background: linear-gradient(180deg, rgba(255,207,230,.06), rgba(201,167,255,.04));
   border: 2px solid rgba(255,207,230,.25); border-radius: 14px; padding: 14px;
@@ -593,14 +592,25 @@ textarea#wishText { font: 16px var(--dot); background: var(--cream); color: var(
 .fave .eyebrow { color: var(--gold); font-size: 8px; margin-bottom: 4px; letter-spacing: .18em; }
 
 .shrine-substack {
-  display: flex; flex-direction: column; gap: 4px; text-decoration: none;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: center; gap: 8px; text-decoration: none;
   background: var(--cream); color: var(--ink); border: 3px solid var(--ink); border-radius: 4px 14px 4px 14px;
-  padding: 14px 16px; box-shadow: 4px 4px 0 rgba(0,0,0,.3); transition: transform .2s;
+  padding: 40px 28px; box-shadow: 4px 4px 0 rgba(0,0,0,.3); transition: transform .2s;
+  min-height: 240px;
 }
 .shrine-substack:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 rgba(0,0,0,.3); }
-.shrine-substack .eyebrow { color: var(--hot); }
-.shrine-substack .ss-title { font-family: var(--pixel); font-size: 13px; color: var(--ink); }
-.shrine-substack .ss-sub { font-family: var(--dot); font-size: 14px; color: var(--ink); opacity: .75; }
+.shrine-substack > .eyebrow { color: var(--hot); position: relative; z-index: 1; }
+.shrine-substack .ss-title { font-family: var(--pixel); font-size: 18px; color: var(--ink); position: relative; z-index: 1; }
+.shrine-substack .ss-sub { font-family: var(--dot); font-size: 15px; color: var(--ink); opacity: .75; position: relative; z-index: 1; }
+.shrine-substack .ss-flower {
+  position: absolute; color: #d7d1dc; font-family: var(--dot); pointer-events: none; user-select: none;
+}
+.ss-flower.f1 { top: 14px;  right: 22px;  font-size: 26px; transform: rotate(14deg); }
+.ss-flower.f2 { bottom: 20px; left: 18px; font-size: 36px; transform: rotate(-18deg); opacity: .85; }
+.ss-flower.f3 { top: 58%;   right: 12px;  font-size: 20px; transform: rotate(30deg); opacity: .7; }
+.ss-flower.f4 { top: 22%;   left: 18px;   font-size: 18px; transform: rotate(-25deg); opacity: .55; }
+.ss-flower.f5 { bottom: 30%; right: 40%;  font-size: 14px; transform: rotate(45deg); opacity: .5; }
+.ss-flower.f6 { top: 12px;  left: 34%;    font-size: 16px; transform: rotate(-10deg); opacity: .55; }
 .quiz p { margin: 0 0 10px; }
 .quiz-opts { display: grid; gap: 8px; }
 .quiz-opts .btn { text-align: left; font-family: var(--dot); font-size: 14px; }
