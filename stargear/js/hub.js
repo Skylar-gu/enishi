@@ -13,7 +13,7 @@
     { id: "about",     glyph: "⛩️", title: "STATUS",          jp: "ステータス",   planet: "MOON",    desc: "fun stats to share." },
     { id: "now",       glyph: "✎", title: "JOURNAL",         jp: "にっき",       planet: "MERCURY", desc: "what i'm up to lately." },
     { id: "research",  glyph: "🌏", title: "RESEARCH WORLDS", jp: "けんきゅう",   planet: "JUPITER", desc: "explore my past projects." },
-    { id: "phone",     glyph: "📱", title: "KEITAI",          jp: "ケータイ",     planet: "VENUS",   desc: "my flip phone · contacts & tiny apps." },
+    { id: "phone",     glyph: "📜", title: "KEITAI",          jp: "ケータイ",     planet: "VENUS",   desc: "my flip phone · contacts & tiny apps." },
     { id: "gacha",     glyph: "🎱", title: "GACHAPON",        jp: "ガチャガチャ", planet: "SUN",     desc: "spin for capsule charms." },
     { id: "nagare",    glyph: "🪷", title: "SHRINE",          jp: "せいち",       planet: "SATURN",  desc: "art · flow · somatic meditation." },
     { id: "wishes",    glyph: "☆", title: "WISH TREE",       jp: "たなばた",     planet: "MARS",    desc: "leave a wish on the bamboo." },
