@@ -14,9 +14,9 @@ export interface Moment {
 }
 
 export const moments: Moment[] = [
-  { caption: 'Moxie dinner', place: 'London', want: 'the table, mid-dinner', ratio: '4 / 5', tone: 'clay' },
+  { caption: 'Dinner', place: 'London', want: 'the table, mid-dinner', ratio: '4 / 5', tone: 'clay' },
   { caption: 'The Residency', place: 'San Francisco', want: 'the house or a work session', ratio: '3 / 2', tone: 'sky' },
-  { caption: 'Moxie dinner', place: 'San Francisco', want: 'faces, candlelight', ratio: '1 / 1', tone: 'blush' },
+  { caption: 'Dinner', place: 'San Francisco', want: 'faces, candlelight', ratio: '1 / 1', tone: 'blush' },
   { caption: 'Hackerspace', place: 'San Francisco', want: 'benches, robots, people', ratio: '3 / 4', tone: 'sage' },
   { caption: 'Talk To Me About', place: 'workshop poster', want: 'the poster with sticky notes', ratio: '4 / 5', tone: 'sand' },
 ];

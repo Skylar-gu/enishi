@@ -33,7 +33,7 @@ export const site = {
     { label: 'Now', value: 'Researcher in Residence, The Residency, San Francisco' },
     { label: 'Research', value: 'Mila – Québec AI Institute' },
     { label: 'Study', value: 'Honours Mathematics & Philosophy, McGill — Spring 2027' },
-    { label: 'Community', value: 'Founder, Moxie · Space architect, Mission Robotics hackerspace' },
+    { label: 'Community', value: 'A community for women in tech and AI · Space architect, Mission Robotics hackerspace' },
   ],
 
   // The through-line, year by year.
@@ -55,7 +55,7 @@ export const site = {
   ],
 
   community:
-    'I founded Moxie, a community for women in tech and AI with chapters in Montréal, London and San Francisco, and I help shape a hackerspace for hardware researchers and founders. Across all of it the goal is the same: more connection between people.',
+    'I am part of a community for women in tech and AI, and I help shape a hackerspace for hardware researchers and founders. Across all of it the goal is the same: more connection between people.',
 
   values: ['Causal grounding', 'Methodology first', 'Honest results over overclaiming', 'Open models'],
 
