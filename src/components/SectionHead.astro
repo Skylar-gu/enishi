@@ -3,13 +3,17 @@ interface Props {
   no: string;
   kicker: string;
   title: string;
+  ipa?: string; // pronunciation, set dictionary-style after the title
   aside?: string;
 }
-const { no, kicker, title, aside } = Astro.props;
+const { no, kicker, title, ipa, aside } = Astro.props;
 ---
 
 <header class="shead">
   <p class="label shead-kicker" data-reveal>{no} — {kicker}</p>
-  <h2 class="shead-title" data-reveal style="--d:80ms">{title}</h2>
+  <h2 class="shead-title" data-reveal style="--d:80ms">
+    {title}
+    {ipa && <span class="ipa" aria-hidden="true">{ipa}</span>}
+  </h2>
   {aside && <p class="label shead-aside" data-reveal style="--d:160ms">— {aside}</p>}
 </header>

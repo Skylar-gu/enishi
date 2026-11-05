@@ -7,6 +7,7 @@ import { site } from '../data/site';
 import { projects, math } from '../data/projects';
 import { essays } from '../data/writing';
 import { art } from '../data/art';
+import { moments } from '../data/moments';
 
 const [first, ...rest] = site.name.split(' ');
 const last = rest.join(' ');
@@ -17,7 +18,7 @@ const strip = art.slice(0, 6);
   <section class="hero wrap">
     <div class="hero-text">
       <p class="label hero-kicker">
-        <span>Index</span><span>Montréal</span><span data-today></span>
+        <span>Index</span><span>{site.places.join(' / ')}</span><span data-today></span>
       </p>
       <h1 class="hero-name" aria-label={site.name}>
         <span class="line" aria-hidden="true">
@@ -55,32 +56,75 @@ const strip = art.slice(0, 6);
   </section>
 
   <section class="about wrap" id="about">
-    <p class="label" data-reveal>00 — about</p>
+    <div class="about-side">
+      <p class="label" data-reveal>00 — about</p>
+      <div class="portrait" data-reveal style="--d:100ms">
+        <Placeholder
+          src={site.portrait || undefined}
+          alt={`Portrait of ${site.name}`}
+          tone="blush"
+          ratio="4 / 5"
+          label="portrait"
+          note="a photo of you"
+        />
+      </div>
+      <dl class="facts" data-reveal style="--d:200ms">
+        {site.facts.map((f) => (
+          <div>
+            <dt class="label">{f.label}</dt>
+            <dd>{f.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
     <div class="about-body">
-      {site.about.map((p, i) => (
-        <p class={i === 0 ? 'about-lead' : 'about-rest'} data-reveal style={`--d:${i * 140}ms`}>
-          {p}
-        </p>
-      ))}
+      <p class="about-lead" data-reveal>{site.thesis}</p>
+      <div class="about-rest">
+        {site.about.map((p, i) => (
+          <p data-reveal style={`--d:${(i + 1) * 120}ms`}>{p}</p>
+        ))}
+      </div>
     </div>
   </section>
 
+  <section class="section wrap" id="research">
+    <SectionHead
+      no="01"
+      kicker="inquiry"
+      title="Research"
+      ipa="/rɪˈsɜːtʃ/"
+      aside="noun · steering the dynamics of systems"
+    />
+    <ol class="years">
+      {site.research.map((r, i) => (
+        <li class="year" data-reveal style={`--d:${i * 120}ms`}>
+          <span class="year-no">{r.year}</span>
+          <p class="year-text">{r.text}</p>
+          <span class="label year-tag">{r.tag ?? ''}</span>
+        </li>
+      ))}
+    </ol>
+    <p class="label values" data-reveal>
+      {site.values.map((v) => <span>{v}</span>)}
+    </p>
+  </section>
+
   <section class="section wrap" id="projects">
-    <SectionHead no="01" kicker="work" title="Projects" aside="built, half-built, kept" />
+    <SectionHead no="02" kicker="work" title="Projects" aside="built, half-built, kept" />
     <div class="grid">
       {projects.map((p, i) => <ProjectCard project={p} index={i} />)}
     </div>
   </section>
 
   <section class="section wrap" id="math">
-    <SectionHead no="02" kicker="play" title="Curiosities" aside="math, for the fun of it" />
+    <SectionHead no="03" kicker="play" title="Curiosities" aside="math, for the fun of it" />
     <div class="grid grid-quiet">
       {math.map((p, i) => <ProjectCard project={p} index={i} prefix="m" />)}
     </div>
   </section>
 
   <section class="section wrap" id="writing">
-    <SectionHead no="03" kicker="words" title="Writing" aside="essays, with pictures beside them" />
+    <SectionHead no="04" kicker="words" title="Writing" aside="essays, with pictures beside them" />
     {
       essays.map((e) => (
         <article class="essay">
@@ -115,9 +159,32 @@ const strip = art.slice(0, 6);
     }
   </section>
 
+  <section class="section wrap" id="rooms">
+    <SectionHead no="05" kicker="people" title="Rooms" aside="dinners, spaces, gatherings" />
+    <p class="rooms-intro" data-reveal>{site.community}</p>
+    <div class="rooms">
+      {moments.map((m, i) => (
+        <figure class="room" data-reveal style={`--d:${(i % 3) * 110}ms`}>
+          <Placeholder
+            src={m.image}
+            alt={[m.caption, m.place].filter(Boolean).join(', ')}
+            tone={m.tone}
+            ratio={m.ratio}
+            label={String(i + 1).padStart(2, '0')}
+            note={m.want}
+          />
+          <figcaption>
+            <em>{m.caption}</em>
+            {m.place && <span class="label">{m.place}</span>}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
   <section class="section" id="art">
     <div class="wrap">
-      <SectionHead no="04" kicker="pictures" title="Art" aside="what is left over" />
+      <SectionHead no="06" kicker="pictures" title="Art" aside="what is left over" />
     </div>
     <a class="strip" href="/art" aria-label="See all art">
       <div class="strip-track">

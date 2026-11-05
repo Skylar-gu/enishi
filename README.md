@@ -22,12 +22,14 @@ Everything that is content lives in `src/data/`:
 | `projects.ts` | Project cards, plus the `math` list for curiosities |
 | `writing.ts`  | Essays (link out to Substack) and their art         |
 | `art.ts`      | Pieces on the art page                              |
+| `moments.ts`  | Photographs in the Rooms section                    |
 
 ### Adding images
 
 Every image slot shows a soft placeholder until it has a file.
 
-1. Drop the file in `public/images/projects/` or `public/images/art/`.
+1. Drop the file in `public/images/projects/`, `public/images/art/` or
+   `public/images/moments/` (the portrait can sit in `public/images/`).
 2. Set the path on the entry, e.g. `image: '/images/projects/enishi.jpg'`
    (for an essay's picture the field is `art`).
 
