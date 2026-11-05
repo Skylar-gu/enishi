@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { art } from '../data/art';
+---
+
+<Base title="Art" description="Art by Skylar Gu — pictures that sit beside the essays.">
+  <section class="page-head wrap">
+    <p class="label page-kicker">04 — pictures</p>
+    <h1 class="page-title" aria-label="Art">
+      <span aria-hidden="true">
+        {'Art'.split('').map((c, i) => <span class="ch" style={`--i:${i}`}>{c}</span>)}
+        <span class="ch dot" style="--i:4">.</span>
+      </span>
+    </h1>
+    <p class="page-intro">
+      Pictures made alongside the writing — some belong to an essay, most belong to an afternoon.
+    </p>
+  </section>
+
+  <section class="wrap">
+    <div class="masonry">
+      {
+        art.map((a, i) => (
+          <figure class="piece" data-reveal style={`--d:${(i % 3) * 110}ms`}>
+            <Placeholder
+              src={a.image}
+              alt={a.title}
+              tone={a.tone}
+              ratio={a.ratio}
+              label={String(i + 1).padStart(3, '0')}
+              note="art to come"
+            />
+            <figcaption>
+              <em>{a.title}</em>
+              <span class="label">
+                {[a.with && `with ${a.with}`, a.year].filter(Boolean).join(' · ')}
+              </span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </section>
+</Base>

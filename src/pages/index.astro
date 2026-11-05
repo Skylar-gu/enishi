@@ -1,0 +1,137 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { site } from '../data/site';
+import { projects, math } from '../data/projects';
+import { essays } from '../data/writing';
+import { art } from '../data/art';
+
+const [first, ...rest] = site.name.split(' ');
+const last = rest.join(' ');
+const strip = art.slice(0, 6);
+---
+
+<Base>
+  <section class="hero wrap">
+    <div class="hero-text">
+      <p class="label hero-kicker">
+        <span>Index</span><span>Montréal</span><span data-today></span>
+      </p>
+      <h1 class="hero-name" aria-label={site.name}>
+        <span class="line" aria-hidden="true">
+          {first.split('').map((c, i) => <span class="ch" style={`--i:${i}`}>{c}</span>)}
+        </span>
+        <span class="line line-2" aria-hidden="true">
+          <em>
+            {last.split('').map((c, i) => (
+              <span class="ch" style={`--i:${i + first.length + 1}`}>{c}</span>
+            ))}
+          </em>
+          <span class="ch dot" style={`--i:${site.name.length + 1}`}>.</span>
+        </span>
+      </h1>
+      <p class="hero-makes">
+        I make <em class="cycle" data-cycle={site.makes.join('|')}>{site.makes[0]}</em>
+      </p>
+      <p class="hero-intro">{site.intro}</p>
+      <a class="label hero-scroll" href="#about">scroll <span aria-hidden="true">↓</span></a>
+    </div>
+
+    <div class="comp" data-parallax aria-hidden="true">
+      <div class="comp-main" style="--depth:8">
+        <canvas class="sky" data-sky="day"></canvas>
+      </div>
+      <div class="comp-minor" style="--depth:20">
+        <canvas class="sky" data-sky="dusk"></canvas>
+      </div>
+      <span class="comp-line l1" style="--depth:14"></span>
+      <span class="comp-line l2" style="--depth:26"></span>
+      <span class="spaced w1" style="--depth:30">here</span>
+      <span class="spaced w2" style="--depth:22">for</span>
+      <span class="spaced w3" style="--depth:34">now.</span>
+    </div>
+  </section>
+
+  <section class="about wrap" id="about">
+    <p class="label" data-reveal>00 — about</p>
+    <div class="about-body">
+      {site.about.map((p, i) => (
+        <p class={i === 0 ? 'about-lead' : 'about-rest'} data-reveal style={`--d:${i * 140}ms`}>
+          {p}
+        </p>
+      ))}
+    </div>
+  </section>
+
+  <section class="section wrap" id="projects">
+    <SectionHead no="01" kicker="work" title="Projects" aside="built, half-built, kept" />
+    <div class="grid">
+      {projects.map((p, i) => <ProjectCard project={p} index={i} />)}
+    </div>
+  </section>
+
+  <section class="section wrap" id="math">
+    <SectionHead no="02" kicker="play" title="Curiosities" aside="math, for the fun of it" />
+    <div class="grid grid-quiet">
+      {math.map((p, i) => <ProjectCard project={p} index={i} prefix="m" />)}
+    </div>
+  </section>
+
+  <section class="section wrap" id="writing">
+    <SectionHead no="03" kicker="words" title="Writing" aside="essays, with pictures beside them" />
+    {
+      essays.map((e) => (
+        <article class="essay">
+          <div class="essay-art" data-reveal>
+            {e.glyph && <span class="essay-glyph" aria-hidden="true">{e.glyph}</span>}
+            <Placeholder
+              src={e.art}
+              alt={`Art for ${e.title}`}
+              tone={e.tone}
+              ratio="4 / 5"
+              label={`art — ${e.title}`}
+              note="picture to come"
+            />
+          </div>
+          <div class="essay-text">
+            <p class="label" data-reveal>essay · {e.date}</p>
+            <h3 class="essay-title" data-reveal style="--d:80ms">
+              <a href={e.href} target="_blank" rel="noopener">{e.title}</a>
+            </h3>
+            <p class="essay-sub" data-reveal style="--d:160ms">{e.subtitle}</p>
+            {e.quote && (
+              <blockquote class="essay-quote" data-reveal style="--d:240ms">
+                “{e.quote}”
+              </blockquote>
+            )}
+            <a class="label link-out" href={e.href} target="_blank" rel="noopener" data-reveal style="--d:320ms">
+              Read on Substack <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+      ))
+    }
+  </section>
+
+  <section class="section" id="art">
+    <div class="wrap">
+      <SectionHead no="04" kicker="pictures" title="Art" aside="what is left over" />
+    </div>
+    <a class="strip" href="/art" aria-label="See all art">
+      <div class="strip-track">
+        {
+          [...strip, ...strip].map((a, i) => (
+            <div class="strip-item" aria-hidden={i >= strip.length ? 'true' : undefined}>
+              <Placeholder src={a.image} alt={a.title} tone={a.tone} ratio={a.ratio} note="" />
+            </div>
+          ))
+        }
+      </div>
+    </a>
+    <div class="wrap strip-foot">
+      <a class="label link-out" href="/art">See all art <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+</Base>
