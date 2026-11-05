@@ -17,6 +17,16 @@ interface Props {
 }
 const { title, description = site.description } = Astro.props;
 const fullTitle = title ? `${title} — ${site.name}` : site.name;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+// Tells search engines this page is about a person, and which profiles are theirs.
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  url: Astro.site?.href,
+  description: site.description,
+  sameAs: [site.links.x, site.links.instagram, site.links.substack, site.links.github].filter(Boolean),
+};
 ---
 
 <!doctype html>
@@ -29,6 +39,10 @@ const fullTitle = title ? `${title} — ${site.name}` : site.name;
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
     <meta name="theme-color" content="#f1ece2" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <ClientRouter />

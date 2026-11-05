@@ -55,9 +55,12 @@ export const site = {
 
   values: ['Causal grounding', 'Methodology first', 'Honest results over overclaiming', 'Open models'],
 
+  // Shown under "Say hello". Leave any of these empty to hide it.
   links: {
+    email: 'skylar.l.gu@gmail.com',
+    x: 'https://x.com/SkylarGu7',
+    instagram: 'https://www.instagram.com/skylar.gu_/',
     substack: 'https://skylartypical.substack.com/',
     github: 'https://github.com/Skylar-gu',
-    email: '', // add an address to show a mail link in the footer
   },
 };

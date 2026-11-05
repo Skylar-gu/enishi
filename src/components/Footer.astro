@@ -1,15 +1,32 @@
 ---
 import { site } from '../data/site';
-const { substack, github, email } = site.links;
+const { email, x, instagram, substack, github } = site.links;
+const links = [
+  { label: 'Email', href: email && `mailto:${email}` },
+  { label: 'X', href: x },
+  { label: 'Instagram', href: instagram },
+  { label: 'Substack', href: substack },
+  { label: 'GitHub', href: github },
+].filter((l) => l.href);
 ---
 
 <footer class="footer wrap" id="hello">
   <p class="label" data-reveal>— correspondence</p>
   <h2 class="footer-title" data-reveal style="--d:80ms">Say <em>hello</em><span class="dot">.</span></h2>
   <ul class="footer-links" data-reveal style="--d:160ms">
-    {email && <li><a href={`mailto:${email}`}>Email <span aria-hidden="true">↗</span></a></li>}
-    <li><a href={substack} target="_blank" rel="noopener">Substack <span aria-hidden="true">↗</span></a></li>
-    <li><a href={github} target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a></li>
+    {
+      links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            target={l.href.startsWith('mailto:') ? undefined : '_blank'}
+            rel={l.href.startsWith('mailto:') ? undefined : 'noopener me'}
+          >
+            {l.label} <span aria-hidden="true">↗</span>
+          </a>
+        </li>
+      ))
+    }
   </ul>
   <div class="footer-base label">
     <span>© {new Date().getFullYear()} {site.name}</span>
