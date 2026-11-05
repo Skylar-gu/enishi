@@ -47,7 +47,7 @@ function initToday() {
   });
 }
 
-/* ── "I make ___" ── */
+/* ── the line under the name ── */
 function initCycle() {
   const el = document.querySelector<HTMLElement>('[data-cycle]');
   if (!el || reduceMotion.matches) return;
@@ -62,7 +62,7 @@ function initCycle() {
       el.textContent = words[i];
       el.classList.remove('is-out');
     }, 720);
-  }, 3200);
+  }, 4600);
   cleanups.push(() => {
     window.clearInterval(tick);
     window.clearTimeout(swap);

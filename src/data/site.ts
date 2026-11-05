@@ -8,8 +8,12 @@ export const site = {
 
   places: ['Montréal', 'San Francisco'],
 
-  // Words that cycle after "I make" in the hero.
-  makes: ['research', 'software', 'essays', 'rooms for people'],
+  // Lines that fade from one to the next under the name.
+  lines: [
+    'Building the computational layer for human dynamics.',
+    'Steering the dynamics of systems.',
+    'Cultivating relational presence for technical people.',
+  ],
 
   intro:
     'Mathematics and philosophy at McGill, research at Mila. Working on AI in the space between people.',
