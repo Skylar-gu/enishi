@@ -1,0 +1,40 @@
+---
+// A frame that shows `src` when there is one, and a soft drifting
+// wash in the given tone when there is not.
+interface Props {
+  src?: string;
+  alt?: string;
+  tone?: string;
+  ratio?: string;
+  label?: string;
+  note?: string;
+  eager?: boolean; // load straight away, for images that slide into view
+  class?: string;
+}
+const {
+  src,
+  alt = '',
+  tone = 'sky',
+  ratio = '4 / 3',
+  label,
+  note = 'image to come',
+  eager = false,
+  class: cls,
+} = Astro.props;
+---
+
+<div class:list={['ph', `tone-${tone}`, cls]} style={`aspect-ratio:${ratio}`}>
+  {
+    src ? (
+      <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+    ) : (
+      <>
+        <span class="ph-wash" aria-hidden="true" />
+        <span class="ph-note label">
+          {label && <b>{label}</b>}
+          <i>{note}</i>
+        </span>
+      </>
+    )
+  }
+</div>

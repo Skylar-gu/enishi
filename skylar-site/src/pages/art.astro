@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { art, photos, dance } from '../data/art';
+
+const groups = [
+  { no: 'i', name: 'Drawing & painting', items: art },
+  { no: 'ii', name: 'Photography', items: photos },
+  { no: 'iii', name: 'Movement', items: dance },
+];
+---
+
+<Base title="Art" description="Drawing, painting, photography and movement by Skylar Gu.">
+  <section class="page-head wrap">
+    <p class="label page-kicker">06 — pictures</p>
+    <h1 class="page-title" aria-label="Art">
+      <span aria-hidden="true">
+        {'Art'.split('').map((c, i) => <span class="ch" style={`--i:${i}`}>{c}</span>)}
+        <span class="ch dot" style="--i:4">.</span>
+      </span>
+    </h1>
+    <p class="page-intro">
+      Pictures made alongside the writing — some belong to an essay, most belong to an afternoon.
+    </p>
+  </section>
+
+  {
+    groups.map((g) => (
+      <section class="wrap art-group">
+        <header class="art-group-head" data-reveal>
+          <span class="label">{g.no}</span>
+          <h2>{g.name}</h2>
+          <span class="label">{String(g.items.length).padStart(2, '0')}</span>
+        </header>
+        <div class="masonry">
+          {g.items.map((a, i) => (
+            <figure class="piece" data-reveal style={`--d:${(i % 3) * 110}ms`}>
+              <Placeholder
+                src={a.image}
+                alt={[a.title, a.medium].filter(Boolean).join(', ')}
+                tone={a.tone}
+                ratio={a.ratio}
+                label={String(i + 1).padStart(2, '0')}
+                note={a.want ?? 'to come'}
+              />
+              <figcaption>
+                <em>{a.title}</em>
+                <span class="label">
+                  {[a.medium, a.with && `with ${a.with}`, a.year].filter(Boolean).join(' · ')}
+                </span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+</Base>

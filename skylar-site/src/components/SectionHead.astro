@@ -1,0 +1,29 @@
+---
+interface Props {
+  no: string;
+  kicker: string;
+  title: string;
+  ipa?: string; // pronunciation, set dictionary-style after the title
+  aside?: string;
+  quote?: string; // shown in place of the aside, with `by` as its author
+  by?: string;
+}
+const { no, kicker, title, ipa, aside, quote, by } = Astro.props;
+---
+
+<header class="shead">
+  <p class="label shead-kicker" data-reveal>{no} — {kicker}</p>
+  <h2 class="shead-title" data-reveal style="--d:80ms">
+    {title}
+    {ipa && <span class="ipa" aria-hidden="true">{ipa}</span>}
+  </h2>
+  {aside && <p class="label shead-aside" data-reveal style="--d:160ms">— {aside}</p>}
+  {
+    quote && (
+      <blockquote class="shead-quote" data-reveal style="--d:160ms">
+        <p>“{quote}”</p>
+        {by && <cite class="label">— {by}</cite>}
+      </blockquote>
+    )
+  }
+</header>

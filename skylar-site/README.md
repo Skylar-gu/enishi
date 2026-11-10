@@ -1,0 +1,71 @@
+# skylar gu — personal site
+
+A small static site built with [Astro](https://astro.build). Two pages: the
+index (about, projects, curiosities, writing) and `/art`.
+
+## Run it
+
+```bash
+npm install
+npm run dev
+```
+
+Then open http://localhost:4321.
+
+## Edit it
+
+Everything that is content lives in `src/data/`:
+
+| File          | What it holds                                       |
+| ------------- | --------------------------------------------------- |
+| `site.ts`     | Name, intro, about paragraphs, links                |
+| `projects.ts` | Project cards, plus the `math` list for curiosities |
+| `writing.ts`  | Essays (link out to Substack) and their art         |
+| `art.ts`      | Art, photographs and the dance slot on the art page |
+| `company.ts`  | Book shelves and Substack reading                   |
+| `moments.ts`  | Photographs in the Salons section                   |
+
+### Adding images
+
+Every image slot shows a soft placeholder until it has a file.
+
+1. Drop the file in `public/images/projects/`, `art/`, `photos/` or
+   `moments/` (the portrait sits in `public/images/`).
+2. Set the path on the entry, e.g. `image: '/images/projects/enishi.jpg'`
+   (for an essay's picture the field is `art`).
+
+Project images are shown at 4:3; art keeps whatever `ratio` you give it.
+
+## Still to do
+
+- **Shelves**: I and Thou, The Art of Loving and The Woman Warrior are my additions; the choice of four
+  for Love and philosophy is mine too (`company.ts`).
+- **Salon photographs**: Neuro × AI and Art × Robotics (`moments.ts`).
+- **Enishi picture**: a better one for the slot beside the essay (`art` in `writing.ts`).
+- **Four photographs** still showing placeholders on the art page: figure in fog,
+  pillars in cloud, bridge at dusk, birdcage (`photos` in `art.ts`).
+- **Dance clip** for the Movement slot (`dance` in `art.ts`).
+- **Drawn stand-ins**: Cooperative Affordances, Brain–Agent Coupling, Scaffold, The
+  Shape of Beliefs and both math cards use drawings made for the site; swap in real figures if
+  you prefer.
+- **Titles and media** on the art page are working guesses — correct them in `art.ts`.
+
+## Look and motion
+
+- `src/styles/global.css` — colours, type and layout. The palette is the
+  set of custom properties at the top.
+- `src/scripts/site.ts` — scroll reveals, the cloud shader in the hero,
+  pointer parallax, and the cycling word.
+
+All motion is switched off for visitors who ask for reduced motion.
+
+## Deploy
+
+The site is static, so Vercel needs no configuration:
+
+1. Push this repo to GitHub.
+2. In Vercel, **Add New → Project**, import the repo, and deploy. The
+   Astro preset is detected automatically.
+
+Every push to `main` then redeploys. Once a domain is settled, update
+`site` in `astro.config.mjs` and `url` in `src/data/site.ts`.

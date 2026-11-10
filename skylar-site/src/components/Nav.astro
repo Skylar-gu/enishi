@@ -1,0 +1,19 @@
+---
+import { site } from '../data/site';
+const path = Astro.url.pathname;
+---
+
+<header class="nav" data-nav>
+  <a class="nav-name" href="/">
+    <em>{site.name.split(' ')[0]}</em>
+    <span class="label">/ {new Date().getFullYear()}</span>
+  </a>
+  <nav class="nav-links label" aria-label="Primary">
+    <a href="/#about">about</a>
+    <a href="/#research">research</a>
+    <a href="/#projects">projects</a>
+    <a href="/#writing">writing</a>
+    <a href="/art" aria-current={path.startsWith('/art') ? 'page' : undefined}>art</a>
+    <a class="nav-hello" href="#hello">tell me something <span aria-hidden="true">→</span></a>
+  </nav>
+</header>
