@@ -1,7 +1,4 @@
-# skylar gu — personal site
-
-A small static site built with [Astro](https://astro.build). Two pages: the
-index (about, projects, curiosities, writing) and `/art`.
+# personal site
 
 ## Run it
 
